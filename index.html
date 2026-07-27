@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lembaran</title>
-<meta name="description" content="A quiet notebook for iPhone. Notebooks on the outside, labels on the inside — so a note lands where it belongs. Works offline, no account, pay once.">
+<meta name="description" content="A quiet notebook for iPhone. Notebooks on the outside, labels on the inside, so a note lands where it belongs. Works offline, no account, pay once.">
 <meta name="theme-color" content="#F2EDE1">
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ihzacordova.github.io/lembaran-site/">
-<meta property="og:title" content="Lembaran — notes that stay put.">
+<meta property="og:title" content="Lembaran · notes that stay put.">
 <meta property="og:description" content="Notebooks on the outside. Labels on the inside. Works offline, no account, pay once.">
 <meta property="og:image" content="https://ihzacordova.github.io/lembaran-site/icon.png">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
   .pro ul{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:15px;}
   .pro li{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:18px;}
   .pro li svg{width:22px;height:22px;color:var(--accent);flex:none;}
-  .pro .buy{width:100%;display:flex;align-items:center;justify-content:space-between;background:var(--accent);color:var(--on-accent);border:0;border-radius:13px;padding:16px 20px;cursor:pointer;font-family:var(--serif);font-size:19px;}
+  .pro .buy{width:100%;text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--accent);color:var(--on-accent);border:0;border-radius:13px;padding:16px 20px;cursor:pointer;font-family:var(--serif);font-size:19px;}
   .pro .buy .p{font-variant-numeric:tabular-nums;}
   .pro .fine{font-family:var(--serif);font-size:14px;color:var(--sub);text-align:center;line-height:1.5;margin:14px 0 4px;}
   .pro .fine b{color:var(--accent);font-weight:500;}
@@ -204,11 +204,40 @@
   /* Padded by the height of the sticky bar at both ends, so the centred
      content can never end up underneath it. svh rather than vh: on a phone,
      vh is the height with the browser chrome retracted, which overflows. */
-  .final{min-height:100vh;min-height:100svh;display:flex;align-items:center;
+  .final{min-height:70vh;min-height:70svh;display:flex;align-items:center;
     text-align:center;padding:var(--nav-h,64px) 0;border-top:1px solid var(--hair);}
   .final .wrap{width:100%;}
   .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7.4vw,92px);line-height:1.02;letter-spacing:-.025em;margin:0 auto;max-width:15ch;text-wrap:balance;}
   .final h2 em{font-style:italic;color:var(--accent);}
+  /* Serif, to answer the line above it; a pill, because the two buttons read
+     as a pair; and lit from the top so it sits on the paper rather than in it.
+     Mixed from --accent so it follows every theme. */
+  .final .btn.big{font-family:var(--serif);font-weight:500;font-size:17px;
+    padding:11px 24px;border-radius:999px;gap:9px;
+    background:linear-gradient(178deg,
+      color-mix(in srgb, #fff 10%, var(--accent)),
+      var(--accent) 58%,
+      color-mix(in srgb, var(--ink) 9%, var(--accent)));
+    box-shadow:inset 0 1px 0 color-mix(in srgb, #fff 26%, transparent),
+      0 2px 3px -2px var(--shadow),
+      0 9px 20px -12px color-mix(in srgb, var(--accent) 82%, transparent);
+    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease, filter .15s;}
+  .final .btn.big .arw{display:inline-block;transition:transform .24s cubic-bezier(.2,.7,.2,1);}
+  .final .btn.big:hover{transform:translateY(-2px);
+    box-shadow:inset 0 1px 0 color-mix(in srgb, #fff 30%, transparent),
+      0 3px 5px -2px var(--shadow),
+      0 15px 28px -14px color-mix(in srgb, var(--accent) 88%, transparent);}
+  .final .btn.big:hover .arw{transform:translateX(4px);}
+  .final .btn.big:active{transform:translateY(0);
+    box-shadow:inset 0 2px 5px -1px color-mix(in srgb, var(--ink) 34%, transparent);}
+  /* Its neighbour matches the shape, so they read as one pair of choices. */
+  .final .btn.ghost{border-radius:999px;padding:11px 20px;font-size:14px;}
+  .final .btn.ghost:hover{border-color:color-mix(in srgb, var(--ink) 32%, transparent);}
+  @media (prefers-reduced-motion: reduce){
+    .final .btn.big,.final .btn.big .arw{transition:none;}
+    .final .btn.big:hover{transform:none;}
+    .final .btn.big:hover .arw{transform:none;}
+  }
   .final .row{display:flex;gap:16px;justify-content:center;margin-top:clamp(34px,5vh,58px);flex-wrap:wrap;}
   /* A phone in landscape has barely more height than the bar itself; a full
      screen there would push the buttons off the bottom. */
@@ -627,7 +656,7 @@
     <div class="copy reveal">
       <p class="eyebrow">Two-level organization</p>
       <h2>Notebooks on the outside. <em>Labels</em> on the inside.</h2>
-      <p class="body">Fifty notes in the order they happened to get written, which is no order at all. One button puts every one of them under a label you named — and nothing about the notes themselves changes.</p>
+      <p class="body">Fifty notes in the order you happened to write them is not an order. Give each one a label and the pile becomes a list you can read. The notes stay exactly as they were.</p>
     </div>
     <div class="lm reveal">
       <div class="lm-bar">
@@ -667,9 +696,9 @@
 <section class="feat solo" id="yours">
   <div class="wrap">
     <div class="copy reveal">
-      <p class="eyebrow">Make it yours</p>
+      <p class="eyebrow">It's yours. Make it yours</p>
       <h2>It bends to you. <em>Not</em> the other way around.</h2>
-      <p class="body">Every switch below is one the app actually has. Move them and the phone rebuilds — not recoloured, rebuilt. Pick a theme and this whole page follows, because it's the same set of themes the app ships.</p>
+      <p class="body">Every switch below is one the app really has. Move them and the phone rebuilds itself. Change the theme and this page changes with it, because these are the same themes that ship in the app.</p>
     </div>
     <div class="rs reveal">
       <div class="rs-controls" id="rs-controls"><div class="rs-grp" id="rs-tags">
@@ -691,7 +720,7 @@
     <div class="copy reveal">
       <p class="eyebrow">Vanishing notes</p>
       <h2>Some notes <em>shouldn't</em> stay.</h2>
-      <p class="body">A door code, a one-time password, a thought you don't need tomorrow. Set a note to vanish and it deletes itself. No trash, no cloud copy, nothing to recover. Try it: set a timer and watch.</p>
+      <p class="body">A door code, a one time password, a thought you will not need tomorrow. Give a note an expiry and it removes itself on the day you chose, without you remembering to do it. Set a timer below and watch.</p>
     </div>
     <div class="demo reveal">
       <div class="demo-card pad">
@@ -705,9 +734,9 @@
 <section class="feat" id="price">
   <div class="wrap">
     <div class="copy reveal">
-      <p class="eyebrow">One payment</p>
+      <p class="eyebrow">One payment is all it takes</p>
       <h2>Pay once. <em>Own it.</em></h2>
-      <p class="body">$4.99, one time. No subscription, no renewal you forgot about. Drag the slider to see what a monthly note app would've cost you by then.</p>
+      <p class="body">$4.99, one time. Everything we add later is included in what you already paid. Drag the slider to see what a subscription would have cost you by the same date.</p>
       <div class="pay-slider-row" style="margin-top:26px">
         <label>Using it for <span class="yrs" id="pay-yrs">3 years</span></label>
         <input type="range" class="full" id="pay-range" min="1" max="10" step="1" value="3">
@@ -734,7 +763,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 4l6 6-9 9-6 1 1-6z"/><path d="M12 6l6 6"/></svg>Your own custom themes</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>Everything to come</li>
           </ul>
-          <button class="buy" type="button"><span>Unlock everything</span><span class="p">$4.99</span></button>
+          <a class="buy" href="https://apps.apple.com/app/id6794497692"><span>Unlock everything</span><span class="p">$4.99</span></a>
           <p class="fine"><b>Lembaran</b> is yours. Buy it once. Own it for the rest of your life. No subscription.</p>
           <div class="links"><a href="#price">Terms</a><span>·</span><a href="#price">Privacy</a></div>
           <div class="row2"><a href="#price">Restore purchase</a><a href="#price">Maybe later</a></div>
@@ -747,9 +776,9 @@
 <!-- ============ final ============ -->
 <section class="final">
   <div class="wrap">
-    <h2><em>Nothing</em> leaves this page.</h2>
+    <h2>In an era where everything is public. <em>Go private.</em></h2>
     <div class="row">
-      <a class="badge-app" href="https://apps.apple.com/app/id6794497692"><span aria-hidden="true">◍</span><span><span class="s">Download on the</span><br><span class="l">App Store</span></span></a>
+      <a class="btn big" href="https://apps.apple.com/app/id6794497692">Go Lembaran<span class="arw" aria-hidden="true">→</span></a>
       <a class="btn ghost" href="#write">Back to the top ↑</a>
     </div>
   </div>
@@ -840,10 +869,10 @@
     var SECTIONS = [
       {nm:"Pinned",colour:"var(--accent)",notes:[
         {t:"Cacio e pepe, no cream",star:true,tm:"10.38",
-         p:"Pecorino only, grated fine. Toast the pepper first, then loosen with the pasta water off the heat — never on it."}]},
+         p:"Pecorino only, grated fine. Toast the pepper first, then loosen with the pasta water off the heat, never on it."}]},
       {nm:"Pasta",colour:"var(--amber)",notes:[
         {t:"Tagliatelle, 2 eggs per 100g",tm:"09.38",p:"Rest the dough 30 min. Roll to 6 on the machine."},
-        {t:"Carbonara — guanciale",tm:"08.38",p:"No cream, ever. Egg yolk + pecorino, off the heat."}]},
+        {t:"Carbonara, guanciale",tm:"08.38",p:"No cream, ever. Egg yolk + pecorino, off the heat."}]},
       {nm:"Sauces",colour:"var(--rust)",notes:[
         {t:"Ragù timing",tm:"07.38",p:"Four hours minimum. Milk goes in first, wine after."},
         {t:"Pesto, marble mortar",tm:"06.38",p:"Basil torn, never chopped. Garlic first."}]},
@@ -1297,7 +1326,7 @@
         label(SECTION,cfg.section),label(NEWNOTE,cfg.newNote),label(THEMES,cfg.theme),
         label(FONTS,cfg.font)].join(" · "));
       read.appendChild(b);
-      read.appendChild(document.createTextNode(" — one of "+TOTAL.toLocaleString("en-US")+
+      read.appendChild(document.createTextNode(", one of "+TOTAL.toLocaleString("en-US")+
         " arrangements, before the two sliders."));
     }
 
@@ -1350,7 +1379,7 @@
 
     var GROUPS = [
       { nm:"Antipasti", colour:TAGS.amber,  notes:["Bruschetta, rub the garlic raw","Focaccia, 20h cold rise","Olive ascolane","Vitello tonnato","Caponata, sweet and sour","Arancini, use cold risotto","Prosciutto e melone","Carciofi alla giudia","Burrata, room temperature","Fritto misto, batter cold"] },
-      { nm:"Pasta",     colour:TAGS.rust,   notes:["Cacio e pepe, no cream","Carbonara — guanciale","Tagliatelle, 2 eggs per 100g","Orecchiette, cime di rapa","Gnocchi, bake the potatoes","Pasta water, salty as the sea","Lasagne, rest before cutting","Trofie al pesto","Bucatini, thick sauce only","Ravioli, seal with egg wash","Pici, hand-rolled","Risotto, 18 minutes"] },
+      { nm:"Pasta",     colour:TAGS.rust,   notes:["Cacio e pepe, no cream","Carbonara, guanciale","Tagliatelle, 2 eggs per 100g","Orecchiette, cime di rapa","Gnocchi, bake the potatoes","Pasta water, salty as the sea","Lasagne, rest before cutting","Trofie al pesto","Bucatini, thick sauce only","Ravioli, seal with egg wash","Pici, hand-rolled","Risotto, 18 minutes"] },
       { nm:"Sauces",    colour:TAGS.blue,   notes:["Ragù timing","Pesto, marble mortar","Amatriciana, no garlic","Puttanesca, anchovy count","Arrabbiata, chilli count","Sugo, milk at the end","Besciamella, nutmeg","Salsa verde, the day before","Aglio e olio, low heat","Marinara, San Marzano"] },
       { nm:"Secondi",   colour:TAGS.olive,  notes:["Osso buco, gremolata","Saltimbocca, sage","Pollo alla cacciatora","Branzino, whole and salted","Cotoletta, bone in","Porchetta, overnight rest","Bollito misto, three meats","Coda alla vaccinara"] },
       { nm:"Dolci",     colour:TAGS.violet, notes:["Tiramisù, savoiardi","Affogato, hot over cold","Panna cotta ratio","Cannoli shells, fried in lard","Zabaglione, marsala","Crostata, jam and lattice","Sfogliatella, patience","Maritozzo, cream to the edge","Torta caprese, no flour","Granita, scrape every 30 min"] }
@@ -1656,7 +1685,7 @@
       $("#ir-typed").textContent = n;
       $("#ir-sent").textContent = "0";
       $("#ir-verdict").textContent = n === 0
-        ? "Go on. The list below says the same thing however much you write."
+        ? ""
         : n + " characters, and not one of them has left this device.";
     }
     field.addEventListener("input", paint);
