@@ -435,13 +435,37 @@
   .rs-chips.segmented span.on{background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12);}
   .rs-chips.solid span{border-color:transparent;background:color-mix(in srgb, var(--ink) 8%, transparent);}
   .rs-chips.solid span.on{background:var(--ink);color:var(--paper);}
-  .rs-menu{margin:11px 20px 0;display:flex;align-items:center;gap:7px;font-size:16px;flex:none;}
-  .rs-menu .cv{font-size:12px;color:var(--sub);}
-  .rs-shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:12px 20px 0;flex:none;}
-  .rs-shelf i{aspect-ratio:3/4;border-radius:6px;display:block;
-    background:color-mix(in srgb, var(--ink) 9%, transparent);
-    border:1px solid color-mix(in srgb, var(--ink) 12%, transparent);}
-  .rs-shelf i.on{border-color:var(--accent);background:color-mix(in srgb, var(--accent) 14%, transparent);}
+  /* Paged: the notebook you are on, as dots, opposite the count. */
+  .rs-dots{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:4px 20px 0;flex:none;}
+  .rs-dots .pips{display:flex;align-items:center;gap:6px;}
+  .rs-dots i{width:6px;height:6px;border-radius:50%;background:color-mix(in srgb,var(--ink) 22%,transparent);display:block;}
+  .rs-dots i.on{background:var(--ink);}
+  .rs-dots .add{color:color-mix(in srgb,var(--ink) 30%,transparent);font-size:11px;line-height:1;}
+  .rs-dots .n{font-size:13px;color:var(--sub);}
+  /* Menu: the title is the control. */
+  .rs-ttl .cv{color:var(--accent);font-size:15px;margin-left:2px;}
+  /* Dock: initials in a floating pill. */
+  .rs-dock{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;display:flex;
+    align-items:center;gap:8px;padding:7px 10px;border-radius:30px;background:var(--card);
+    border:1px solid var(--hair);box-shadow:0 4px 16px rgba(0,0,0,.16);}
+  .rs-dock i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    font-size:12.5px;font-family:var(--serif);
+    border:1px solid var(--hair);color:var(--sub);}
+  .rs-dock i.on{background:var(--accent);color:var(--on-accent);border-color:transparent;}
+  .rs-dock i.add{border-style:dashed;}
+  /* Shelf: the notebook index, not a notebook. */
+  .rs-shelfwrap{flex:1;overflow:hidden;padding:2px 20px 0;}
+  .rs-shelfgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .rs-book{border:1px solid var(--hair);border-left:3px solid var(--accent);border-radius:6px;
+    background:color-mix(in srgb,var(--ink) 4%,transparent);
+    aspect-ratio:1/1.06;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;}
+  .rs-book .bn{font-size:13px;line-height:1.25;}
+  .rs-book .bc{font-family:var(--mono);font-size:9.5px;color:var(--sub);margin-top:3px;}
+  .rs-book.new{border:1.5px dashed var(--hair);align-items:center;justify-content:center;
+    color:var(--sub);gap:4px;}
+  .rs-book.new .plus{font-size:17px;line-height:1;}
+  .rs-book.new .bn{font-family:var(--mono);font-size:9.5px;}
   .rs-ttl{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px 20px 0;flex:none;}
   .rs-ttl h4{font-size:29px;font-weight:500;letter-spacing:-.02em;margin:0;line-height:1.15;}
   .rs-ttl .n{font-size:13px;color:var(--sub);}
@@ -457,35 +481,71 @@
   .rs-sec .cv{font-size:11px;opacity:.55;}
   .rs-sec .dot{width:7px;height:7px;border-radius:50%;flex:none;}
   .rs-sec .ru{flex:1;height:1px;background:color-mix(in srgb, var(--ink) 13%, transparent);}
-  .rs-sec .ct{font-family:var(--serif);font-size:12px;text-transform:none;letter-spacing:0;opacity:.75;}
+  .rs-sec .ct{font-family:var(--serif);font-size:12px;text-transform:none;letter-spacing:0;
+    opacity:.75;margin-left:auto;}
   .rs-sec.minimal .dot,.rs-sec.minimal .ru{display:none;}
-  .rs-sec.minimal,.rs-sec.pill,.rs-sec.bar{justify-content:space-between;}
   .rs-sec.colouredRule .dot{display:none;}
   .rs-sec.colouredRule .ru{background:currentColor;opacity:.35;}
   .rs-sec.pill .dot,.rs-sec.pill .ru,.rs-sec.bar .ru{display:none;}
-  .rs-sec.pill .nm{border-radius:20px;padding:4px 11px;}
+  .rs-sec.pill .nm{border-radius:20px;padding:4px 11px;
+    background:color-mix(in srgb, var(--tint) 20%, transparent);}
   .rs-sec.bar .dot{width:3.5px;height:14px;border-radius:2px;}
   .rs-note{font-size:var(--rs-size,15px);line-height:var(--rs-lead,1.62);padding:9px 0;
     display:flex;align-items:baseline;gap:9px;}
   .rs-note + .rs-note{border-top:1px solid color-mix(in srgb, var(--ink) 10%, transparent);}
   .rs-note .star{color:var(--accent);font-size:13px;flex:none;}
-  .rs-body.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start;}
-  .rs-body.grid .rs-sec{grid-column:1/-1;}
-  .rs-body.grid .rs-note{border:1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-    border-radius:9px;padding:11px;min-height:62px;align-items:flex-start;font-size:13px;}
-  .rs-body.desk .rs-note{background:color-mix(in srgb, var(--amber) 20%, transparent);
-    border-radius:4px;padding:11px 12px;margin-bottom:8px;border:0;box-shadow:0 1px 3px rgba(0,0,0,.13);}
-  .rs-body.desk .rs-note:nth-child(odd){transform:rotate(-.5deg);}
-  .rs-body.desk .rs-note:nth-child(even){transform:rotate(.4deg);}
-  .rs-body.journal .rs-note{border:0;padding:4px 0 10px 14px;position:relative;
-    flex-direction:column;gap:2px;align-items:flex-start;}
-  .rs-body.journal .rs-note::before{content:"";position:absolute;left:0;top:8px;bottom:0;width:1.5px;
-    background:color-mix(in srgb, var(--ink) 12%, transparent);}
-  .rs-body.journal .rs-note .d{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
-    text-transform:uppercase;color:var(--sub);}
-  .rs-body.ledger .rs-note{border-top:0;padding:8px 0;gap:12px;
+  /* Grid ---------------------------------------------------------------- */
+  .rs-glab{font-family:var(--mono);font-size:8px;letter-spacing:.19em;text-transform:uppercase;
+    color:var(--sub);margin:12px 0 7px;}
+  .rs-glab:first-child{margin-top:2px;}
+  .rs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;}
+  .rs-grid.one{grid-template-columns:1fr 1fr;}
+  .rs-grid.one > *{grid-column:1;}
+  .rs-card{background:color-mix(in srgb, var(--ink) 5%, transparent);border-radius:7px;
+    padding:9px 10px;position:relative;}
+  .rs-card .ct{font-size:12px;line-height:1.3;display:flex;gap:5px;align-items:baseline;}
+  .rs-card .star{color:var(--accent);font-size:9px;}
+  .rs-card .cp{font-size:9.5px;line-height:1.45;color:var(--sub);margin:5px 0 0;
+    display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
+  .rs-card .cl{display:block;text-align:right;font-size:10px;color:var(--accent);margin-top:6px;}
+  .rs-card .pin{position:absolute;top:7px;right:7px;width:5px;height:5px;border-radius:50%;
+    background:var(--accent);}
+  .rs-chip{display:inline-block;margin-top:7px;font-family:var(--mono);font-size:8px;
+    letter-spacing:.06em;border-radius:20px;padding:2px 6px;color:var(--tint);
+    border:1px solid color-mix(in srgb, var(--tint) 55%, transparent);}
+  /* Desk ---------------------------------------------------------------- */
+  .rs-deck{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;}
+  .rs-col{display:flex;flex-direction:column;gap:8px;}
+  .rs-col:nth-child(2){padding-top:14px;}
+  .rs-body.desk .rs-card{border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.14);padding:10px 11px;
+    background:color-mix(in srgb, var(--tint, var(--ink)) 15%, transparent);}
+  .rs-tagtext{display:block;margin-top:6px;font-family:var(--mono);font-size:8px;letter-spacing:.06em;}
+  /* Journal ------------------------------------------------------------- */
+  .rs-body.journal{position:relative;padding-left:30px;}
+  .rs-body.journal::before{content:"";position:absolute;left:23px;top:6px;bottom:0;width:1px;
+    background:color-mix(in srgb, var(--ink) 14%, transparent);}
+  .rs-jsec{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:8px;
+    letter-spacing:.18em;text-transform:uppercase;padding:11px 0 3px;position:relative;}
+  .rs-jsec .dot{width:5.5px;height:5.5px;border-radius:50%;position:absolute;left:-10px;}
+  .rs-jrow{padding:4px 0 7px;}
+  .rs-jrow .t{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .rs-jrow .x{font-size:12.5px;display:flex;gap:5px;align-items:baseline;}
+  .rs-jrow .star{color:var(--accent);font-size:9px;}
+  .rs-jrow .tm{font-family:var(--mono);font-size:9px;color:var(--sub);}
+  .rs-jrow .p{font-size:9.5px;line-height:1.45;color:var(--sub);margin:2px 0 0;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  /* Ledger -------------------------------------------------------------- */
+  .rs-body.ledger{position:relative;padding-left:0;}
+  .rs-body.ledger::before{content:"";position:absolute;left:52px;top:0;bottom:0;width:1px;
+    background:color-mix(in srgb, var(--ink) 14%, transparent);}
+  .rs-lsec{font-family:var(--mono);font-size:8px;letter-spacing:.19em;text-transform:uppercase;
+    padding:11px 0 4px 16px;}
+  .rs-lrow{display:flex;align-items:baseline;gap:0;
     border-bottom:1px solid color-mix(in srgb, var(--ink) 11%, transparent);}
-  .rs-body.ledger .rs-note .ix{font-family:var(--mono);font-size:11px;color:var(--sub);min-width:16px;}
+  .rs-lrow .ix{font-family:var(--mono);font-size:8.5px;color:var(--sub);width:52px;
+    padding:8px 0 8px 16px;flex:none;}
+  .rs-lrow .tx{font-size:12.5px;padding:8px 0 8px 14px;display:flex;gap:5px;align-items:baseline;}
+  .rs-lrow .star{color:var(--accent);font-size:9px;}
   .rs-fab{position:absolute;background:var(--accent);color:var(--on-accent);font-family:var(--sans);
     display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 4px 14px rgba(0,0,0,.28);}
   .rs-fab.circle{right:20px;bottom:26px;width:54px;height:54px;border-radius:50%;font-size:25px;}
@@ -766,15 +826,26 @@
 
     var BOOKS = ["Italian Recipes","Kyoto Trip","Reading","Groceries"];
     var SECTIONS = [
-      {nm:"Pinned",colour:"var(--accent)",notes:[{t:"Cacio e pepe, no cream",star:true,d:"Apr 3"}]},
-      {nm:"Pasta",colour:"var(--amber)",notes:[{t:"Tagliatelle, 2 eggs per 100g",d:"Apr 7"},{t:"Carbonara — guanciale",d:"Apr 9"}]},
-      {nm:"Sauces",colour:"var(--rust)",notes:[{t:"Ragù timing",d:"Apr 14"},{t:"Pesto, marble mortar",d:"Apr 18"}]},
-      {nm:"Dolci",colour:"var(--blue)",notes:[{t:"Tiramisù, savoiardi",d:"Apr 22"}]}
+      {nm:"Pinned",colour:"var(--accent)",notes:[
+        {t:"Cacio e pepe, no cream",star:true,tm:"10.38",
+         p:"Pecorino only, grated fine. Toast the pepper first, then loosen with the pasta water off the heat — never on it."}]},
+      {nm:"Pasta",colour:"var(--amber)",notes:[
+        {t:"Tagliatelle, 2 eggs per 100g",tm:"09.38",p:"Rest the dough 30 min. Roll to 6 on the machine."},
+        {t:"Carbonara — guanciale",tm:"08.38",p:"No cream, ever. Egg yolk + pecorino, off the heat."}]},
+      {nm:"Sauces",colour:"var(--rust)",notes:[
+        {t:"Ragù timing",tm:"07.38",p:"Four hours minimum. Milk goes in first, wine after."},
+        {t:"Pesto, marble mortar",tm:"06.38",p:"Basil torn, never chopped. Garlic first."}]},
+      {nm:"Dolci",colour:"var(--blue)",notes:[
+        {t:"Tiramisù, savoiardi",tm:"05.38",p:"Dip, do not soak. Mascarpone at room temperature."}]}
     ];
+    // The vanishing note is part of the notebook: a banner in List, a card in
+    // Grid, a sticky on the Desk, and absent from the two dated layouts.
+    var VANISH = { t:"Grocery", clock:"2h", p:"Passata, guanciale, pecorino, 00 flour." };
     var NOTE_TOTAL = 7;
 
     var cfg = {nav:"tabs",tabStyle:"normal",display:"list",section:"line",
-               newNote:"pull",theme:"paper",font:"newsreader",size:15,lead:1.62};
+               newNote:"pull",theme:"paper",font:"newsreader",size:15,lead:1.62,
+               coloured:true};
 
     function el(t,c,x){var n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n;}
     function mk(p,c,s){var m=el("i","rs-mk"+(c?" "+c:""));m.style.cssText=s;p.appendChild(m);return m;}
@@ -824,6 +895,13 @@
       return w;
     }
 
+    // Every tag colour in the phone goes through here, so the switch has one
+    // thing to change rather than nine.
+    function tagColour(S){
+      if(!S) return "var(--sub)";
+      return cfg.coloured ? S.colour : "var(--sub)";
+    }
+
     function renderPhone(){
       var scr=$("#rs-scr");
       scr.innerHTML="";
@@ -833,74 +911,205 @@
       scr.appendChild(sb);
       scr.appendChild(el("div","rs-island"));
 
+      var shelf = cfg.nav==="shelf";
+
       var nb=el("div","rs-nbar");
-      nb.appendChild(el("span","cap","Notebooks"));
+      nb.appendChild(el("span","cap", shelf ? "The shelf" : (cfg.nav==="paged" ? "Notebook 01" : "Notebooks")));
       var ic=el("span","ic");
       ic.appendChild(ico(GEAR,19));ic.appendChild(ico(SEARCH,19));
       nb.appendChild(ic);
       scr.appendChild(nb);
 
-      if(cfg.nav==="menu"){
-        var m=el("div","rs-menu");
-        m.appendChild(el("span",null,BOOKS[0]));
-        m.appendChild(el("span","cv","▾"));
-        scr.appendChild(m);
-      } else if(cfg.nav==="shelf"){
-        var sh=el("div","rs-shelf");
-        BOOKS.concat(["Work","Ideas"]).forEach(function(b,i){ sh.appendChild(el("i",i===0?"on":null)); });
-        scr.appendChild(sh);
-      } else if(cfg.nav!=="dock"){
+      // Only Tabs puts a strip of notebook chips above the title.
+      if(cfg.nav==="tabs"){
         var ch=el("div","rs-chips "+cfg.tabStyle);
         BOOKS.forEach(function(b,i){ ch.appendChild(el("span",i===0?"on":null,b)); });
         scr.appendChild(ch);
       }
 
       var t=el("div","rs-ttl");
-      t.appendChild(el("h4",null,BOOKS[0]));
-      t.appendChild(el("span","n",NOTE_TOTAL+" notes"));
+      var h=el("h4",null, shelf ? "Notebooks" : BOOKS[0]);
+      t.appendChild(h);
+      // Menu hangs the chevron off the title, because the title is the control.
+      if(cfg.nav==="menu") h.appendChild(el("span","cv"," ⌄"));
+      // Paged moves the count down to the dots row, so the title stands alone.
+      if(cfg.nav!=="paged" && !shelf) t.appendChild(el("span","n",NOTE_TOTAL+" notes"));
       scr.appendChild(t);
 
-      if(cfg.newNote==="pull") scr.appendChild(el("div","rs-pull","↓  pull to write"));
+      if(cfg.nav==="paged"){
+        var dots=el("div","rs-dots");
+        var pips=el("div","pips");
+        BOOKS.forEach(function(b,i){ pips.appendChild(el("i",i===0?"on":null)); });
+        pips.appendChild(el("span","add","✧"));
+        dots.appendChild(pips);
+        dots.appendChild(el("span","n",NOTE_TOTAL+" notes"));
+        scr.appendChild(dots);
+      }
 
-      var v=el("div","rs-vanish");
-      v.appendChild(el("span","t","Wine for Saturday"));
-      var c=el("span","c");
-      c.appendChild(ico(CLOCK,14,2));c.appendChild(el("span",null,"11h"));
-      v.appendChild(c);
-      scr.appendChild(v);
+      // The shelf is the index of notebooks — there is no note list on it.
+      if(shelf){
+        var wrap=el("div","rs-shelfwrap");
+        var grid=el("div","rs-shelfgrid");
+        [[BOOKS[0],NOTE_TOTAL],[BOOKS[1],5],[BOOKS[2],4],[BOOKS[3],2]].forEach(function(p){
+          var card=el("div","rs-book");
+          card.appendChild(el("span","bn",p[0]));
+          card.appendChild(el("span","bc",p[1]+" notes"));
+          grid.appendChild(card);
+        });
+        var add=el("div","rs-book new");
+        add.appendChild(el("span","plus","+"));
+        add.appendChild(el("span","bn","New notebook"));
+        grid.appendChild(add);
+        wrap.appendChild(grid);
+        scr.appendChild(wrap);
+        return;
+      }
 
-      var body=el("div","rs-body "+cfg.display), run=0;
-      SECTIONS.forEach(function(S){
+      if(cfg.newNote==="pull" && cfg.display==="list") scr.appendChild(el("div","rs-pull","↓  pull to write"));
+
+      if(cfg.display==="list"){
+        var v=el("div","rs-vanish");
+        v.appendChild(el("span","t",VANISH.t));
+        var c=el("span","c");
+        c.appendChild(ico(CLOCK,14,2));c.appendChild(el("span",null,VANISH.clock));
+        v.appendChild(c);
+        scr.appendChild(v);
+      }
+
+      var body=el("div","rs-body "+cfg.display);
+
+      // The tag divider styles only exist in List; the other layouts carry the
+      // tag on the note itself.
+      function divider(S){
+        var col=tagColour(S);
         var s=el("div","rs-sec "+cfg.section);
-        if(cfg.section==="colouredRule") s.style.color=S.colour;
+        if(cfg.section==="colouredRule") s.style.color=col;
         s.appendChild(el("span","cv","⌄"));
-        var d=el("i","dot");d.style.background=S.colour;s.appendChild(d);
+        var d=el("i","dot");d.style.background=col;s.appendChild(d);
         if(cfg.section==="colouredRule") s.appendChild(el("span","ru"));
         var nm=el("span","nm",S.nm);
         if(cfg.section==="pill"){
-          nm.style.background="color-mix(in srgb,"+S.colour+" 20%,transparent)";
-          nm.style.color=S.colour;
-        } else if(cfg.section!=="colouredRule"){ nm.style.color=S.colour; }
+          nm.style.setProperty("--tint", col);
+          nm.style.color=col;
+        } else if(cfg.section!=="colouredRule"){ nm.style.color=col; }
         s.appendChild(nm);
         s.appendChild(el("span","ru"));
         s.appendChild(el("span","ct",String(S.notes.length)));
-        body.appendChild(s);
-        S.notes.forEach(function(n){
-          run++;
-          var row=el("div","rs-note");
-          if(cfg.display==="ledger") row.appendChild(el("span","ix",String(run)));
-          if(cfg.display==="journal") row.appendChild(el("span","d",n.d));
-          if(n.star&&cfg.display!=="journal") row.appendChild(el("span","star","★"));
-          row.appendChild(el("span","tx",n.t));
-          body.appendChild(row);
+        return s;
+      }
+      function chip(S){
+        var c=el("span","rs-chip",S.nm);
+        c.style.setProperty("--tint", tagColour(S));
+        return c;
+      }
+      function card(n,S,opts){
+        opts=opts||{};
+        var c=el("div","rs-card");
+        if(opts.tint) c.style.setProperty("--tint", tagColour(S));
+        if(n.star) c.appendChild(el("i","pin"));
+        var h=el("div","ct");
+        if(n.star && opts.star) h.appendChild(el("span","star","★"));
+        h.appendChild(el("span",null,n.t));
+        c.appendChild(h);
+        if(n.p) c.appendChild(el("p","cp",n.p));
+        if(n.clock){
+          var cl=el("span","cl");
+          cl.appendChild(el("span",null,n.clock));
+          c.appendChild(cl);
+        } else if(S){
+          c.appendChild(opts.plainTag ? (function(){
+            var t=el("span","rs-tagtext",S.nm); t.style.color=tagColour(S); return t;
+          })() : chip(S));
+        }
+        return c;
+      }
+
+      if(cfg.display==="list"){
+        SECTIONS.forEach(function(S){
+          body.appendChild(divider(S));
+          S.notes.forEach(function(n){
+            var row=el("div","rs-note");
+            if(n.star) row.appendChild(el("span","star","★"));
+            row.appendChild(el("span","tx",n.t));
+            body.appendChild(row);
+          });
         });
-      });
+
+      } else if(cfg.display==="grid"){
+        // Grouped by pinned, not by tag — the tag rides on each card instead.
+        var pinned=[], others=[];
+        SECTIONS.forEach(function(S){
+          S.notes.forEach(function(n){ (n.star?pinned:others).push({n:n,S:S}); });
+        });
+        others.unshift({ n:{ t:VANISH.t, clock:VANISH.clock }, S:null });
+        if(pinned.length){
+          body.appendChild(el("p","rs-glab","Pinned"));
+          var top=el("div","rs-grid one");
+          pinned.forEach(function(x){ top.appendChild(card(x.n,x.S,{star:true})); });
+          body.appendChild(top);
+        }
+        body.appendChild(el("p","rs-glab","Others"));
+        var g=el("div","rs-grid");
+        others.forEach(function(x){ g.appendChild(card(x.n,x.S)); });
+        body.appendChild(g);
+
+      } else if(cfg.display==="desk"){
+        // No headings. Two staggered columns of tinted stickies.
+        var all=[{ n:{ t:VANISH.t, clock:VANISH.clock, p:VANISH.p }, S:null }];
+        SECTIONS.forEach(function(S){ S.notes.forEach(function(n){ all.push({n:n,S:S}); }); });
+        var cols=[el("div","rs-col"),el("div","rs-col")];
+        all.forEach(function(x,i){
+          var c=card(x.n,x.S,{ tint:true, plainTag:true });
+          c.style.transform="rotate("+(i%2?0.5:-0.6)+"deg)";
+          cols[i%2].appendChild(c);
+        });
+        var deck=el("div","rs-deck");
+        cols.forEach(function(c){ deck.appendChild(c); });
+        body.appendChild(deck);
+
+      } else if(cfg.display==="journal"){
+        SECTIONS.forEach(function(S){
+          var h=el("div","rs-jsec");
+          var d=el("i","dot"); d.style.background=tagColour(S); h.appendChild(d);
+          var nm=el("span",null,S.nm); nm.style.color=tagColour(S); h.appendChild(nm);
+          body.appendChild(h);
+          S.notes.forEach(function(n){
+            var row=el("div","rs-jrow");
+            var top=el("div","t");
+            var ttl=el("span","x");
+            if(n.star) ttl.appendChild(el("span","star","★"));
+            ttl.appendChild(el("span",null,n.t));
+            top.appendChild(ttl);
+            top.appendChild(el("span","tm",n.tm||""));
+            row.appendChild(top);
+            if(n.p) row.appendChild(el("p","p",n.p));
+            body.appendChild(row);
+          });
+        });
+
+      } else {
+        // Ledger: the count restarts inside each section, behind a rule.
+        SECTIONS.forEach(function(S){
+          var h=el("div","rs-lsec",S.nm);
+          h.style.color=tagColour(S);
+          body.appendChild(h);
+          S.notes.forEach(function(n,i){
+            var row=el("div","rs-lrow");
+            row.appendChild(el("span","ix",("0"+(i+1)).slice(-2)));
+            var t=el("span","tx");
+            if(n.star) t.appendChild(el("span","star","★"));
+            t.appendChild(el("span",null,n.t));
+            row.appendChild(t);
+            body.appendChild(row);
+          });
+        });
+      }
       scr.appendChild(body);
 
       if(cfg.nav==="dock"){
-        var dk=el("div","rs-chips segmented");
-        dk.style.margin="0 20px 18px";
-        BOOKS.forEach(function(b,i){ dk.appendChild(el("span",i===0?"on":null,b)); });
+        var dk=el("div","rs-dock");
+        BOOKS.forEach(function(b,i){ dk.appendChild(el("i",i===0?"on":null, b.charAt(0))); });
+        dk.appendChild(el("i","add","+"));
         scr.appendChild(dk);
       }
       if(cfg.newNote!=="pull"){
@@ -1079,6 +1288,26 @@
       read.appendChild(document.createTextNode(" — one of "+TOTAL.toLocaleString("en-US")+
         " arrangements, before the two sliders."));
     }
+
+    // The Coloured switch is shared with #organize, which owns aria-pressed.
+    // Listening for the click would mean depending on which section registered
+    // first — and this one did, so it read the value before the flip. Watching
+    // the attribute is order-independent, and picks up any future handler too.
+    (function(){
+      var t=$("#cz-coloured"); if(!t) return;
+      function follow(){
+        var on = t.getAttribute("aria-pressed") === "true";
+        if(on === cfg.coloured) return;
+        cfg.coloured = on;
+        paint();
+      }
+      cfg.coloured = t.getAttribute("aria-pressed") === "true";
+      if(window.MutationObserver){
+        new MutationObserver(follow).observe(t,{attributes:true,attributeFilter:["aria-pressed"]});
+      } else {
+        t.addEventListener("click", function(){ setTimeout(follow, 0); });
+      }
+    })();
 
     // The nav's own theme dots should keep this section in step.
     $$(".tdot").forEach(function(b){
