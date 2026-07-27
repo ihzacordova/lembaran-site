@@ -201,10 +201,18 @@
   .pro .row2 a{text-decoration:none;cursor:pointer;}
 
   /* ---------- final + footer ---------- */
-  .final{text-align:center;padding:clamp(60px,8vw,120px) 0;border-top:1px solid var(--hair);}
-  .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(36px,5.4vw,68px);line-height:1.03;letter-spacing:-.02em;margin:0 auto;max-width:16ch;text-wrap:balance;}
+  /* Padded by the height of the sticky bar at both ends, so the centred
+     content can never end up underneath it. svh rather than vh: on a phone,
+     vh is the height with the browser chrome retracted, which overflows. */
+  .final{min-height:100vh;min-height:100svh;display:flex;align-items:center;
+    text-align:center;padding:var(--nav-h,64px) 0;border-top:1px solid var(--hair);}
+  .final .wrap{width:100%;}
+  .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7.4vw,92px);line-height:1.02;letter-spacing:-.025em;margin:0 auto;max-width:15ch;text-wrap:balance;}
   .final h2 em{font-style:italic;color:var(--accent);}
-  .final .row{display:flex;gap:16px;justify-content:center;margin-top:34px;flex-wrap:wrap;}
+  .final .row{display:flex;gap:16px;justify-content:center;margin-top:clamp(34px,5vh,58px);flex-wrap:wrap;}
+  /* A phone in landscape has barely more height than the bar itself; a full
+     screen there would push the buttons off the bottom. */
+  @media (max-height:560px){ .final{min-height:0;padding:clamp(56px,10vh,90px) 0;} }
   footer{border-top:1px solid var(--hair);padding:36px 0 60px;}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--sub);letter-spacing:.03em;}
   footer a{text-decoration:none;} footer a:hover{color:var(--ink);}
@@ -232,7 +240,7 @@
     .feat .kv div{font-size:14px;}
     .demo-card.pad{padding:18px;}
     .pro{padding:26px 20px;} .pro h3{font-size:29px;margin-bottom:18px;} .pro ul{gap:13px;} .pro li{font-size:16px;} .pro .buy{font-size:17px;padding:15px 18px;}
-    .final{padding:60px 0;} .final h2{font-size:clamp(30px,8.5vw,46px);}
+    .final h2{font-size:clamp(32px,9vw,52px);max-width:14ch;}
     .final .row{gap:12px;}
     footer .wrap{flex-direction:column;gap:7px;}}
   /* small phones */
