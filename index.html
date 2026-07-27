@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lembaran — fast notes, neatly tabbed.</title>
-<meta name="description" content="A quiet notebook for iPhone. Notebooks on the outside, tabs on the inside — so a note lands where it belongs. Works offline, no account, pay once.">
+<title>Lembaran</title>
+<meta name="description" content="A quiet notebook for iPhone. Notebooks on the outside, labels on the inside — so a note lands where it belongs. Works offline, no account, pay once.">
 <meta name="theme-color" content="#F2EDE1">
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ihzacordova.github.io/lembaran-site/">
-<meta property="og:title" content="Lembaran — fast notes, neatly tabbed.">
-<meta property="og:description" content="Notebooks on the outside. Tabs on the inside. Works offline, no account, pay once.">
+<meta property="og:title" content="Lembaran — notes that stay put.">
+<meta property="og:description" content="Notebooks on the outside. Labels on the inside. Works offline, no account, pay once.">
 <meta property="og:image" content="https://ihzacordova.github.io/lembaran-site/icon.png">
 <meta name="twitter:card" content="summary">
 </head>
@@ -346,6 +346,107 @@
     .cz-sw{width:56px;}
     .badge-app{padding:9px 13px;}
   }
+
+  /* ---- hero · type first (direction 01) ---------------------------------
+     No device shot: the headline carries the screen and the pull is drawn as
+     a single hairline falling away beneath it. Overrides the two-column
+     .hero .wrap grid above; every selector here is one class heavier than the
+     rule it replaces, so the responsive blocks below cannot undo it. */
+  .hero.solo .wrap{display:block;text-align:center;max-width:none;}
+  .hero.solo .copy{max-width:none;}
+  .hero.solo .eyebrow{margin-bottom:20px;}
+  .hero.solo h1{font-size:clamp(40px,7.6vw,92px);margin-inline:auto;max-width:14ch;}
+  .hero.solo .lede{margin:28px auto 0;max-width:46ch;}
+  .hero.solo .row{justify-content:center;margin-top:clamp(28px,3.4vw,38px);}
+  .hero.solo .gesture-wrap{margin-top:clamp(46px,6.4vw,78px);}
+  .hero.solo .gesture{
+    position:relative;margin:0 auto;width:1px;height:clamp(48px,7vw,74px);
+    background:linear-gradient(var(--hair),var(--accent));
+  }
+  .hero.solo .gesture::after{
+    content:"";position:absolute;bottom:0;left:50%;width:8px;height:8px;
+    border-right:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);
+    transform:translateX(-50%) rotate(45deg);
+  }
+  .hero.solo .gesture-l{
+    display:block;margin-top:15px;font-family:var(--sans);font-size:11px;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--sub);
+  }
+  @media (max-width:760px){
+    .hero.solo h1{font-size:clamp(34px,10vw,54px);max-width:none;}
+    .hero.solo .lede{font-size:16px;max-width:36ch;}
+  }
+
+  /* ---- #organize · the shape of it (direction 01) ------------------------
+     The section turns the notebook side-on. The left half is deliberately NOT
+     drawn in the app's palette — cold grey, system sans — because it depicts a
+     different product. .feat.solo drops the two-column grid so the comparison
+     can run the full width. */
+  .feat.solo .wrap{display:block;}
+  .feat.solo .copy{max-width:none;}
+  .feat.solo .copy .body{max-width:52ch;}
+  .sh{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(28px,3.6vw,44px);
+    border:1px solid var(--hair);border-radius:14px;overflow:hidden;
+    box-shadow:0 34px 60px -36px var(--shadow);}
+  .sh-side{min-width:0;display:flex;flex-direction:column;}
+  .sh-them{--sh-bg:#F5F5F7;--sh-ink:#1C1C1E;--sh-sub:#8E8E93;--sh-hair:#E5E5EA;
+    background:var(--sh-bg);color:var(--sh-ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    border-right:1px solid var(--hair);}
+  .sh-us{background:var(--card);}
+  .sh-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:15px 20px 11px;}
+  .sh-them .sh-hd{border-bottom:1px solid var(--sh-hair);}
+  .sh-us .sh-hd{border-bottom:1px solid var(--hair);}
+  .sh-who{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;}
+  .sh-them .sh-who{color:var(--sh-sub);}
+  .sh-us .sh-who{color:var(--accent);}
+  .sh-stat{font-family:var(--mono);font-size:10.5px;}
+  .sh-them .sh-stat{color:var(--sh-sub);}
+  .sh-us .sh-stat{color:var(--sub);}
+  .sh-view{position:relative;height:300px;overflow:hidden;flex:1;}
+  .sh-scroll{position:absolute;inset:0;overflow-y:auto;padding:8px 20px 44px;}
+  .sh-fade{position:absolute;left:0;right:0;bottom:0;height:64px;pointer-events:none;
+    background:linear-gradient(transparent,#F5F5F7 66%);}
+  .sh-row{font-size:13px;padding:6px 0;border-bottom:1px solid var(--sh-hair);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  /* A note dropping into the middle of the pile, shouldering the rows apart. */
+  .sh-row.in{animation:sh-in .42s cubic-bezier(.2,.8,.2,1) both;}
+  @keyframes sh-in{
+    from{opacity:0;transform:translateY(-9px);background:rgba(10,132,255,.16);}
+    60%{opacity:1;background:rgba(10,132,255,.16);}
+    to{opacity:1;transform:none;background:transparent;}
+  }
+  .sh-none{margin:0;padding:14px 20px 18px;font-family:var(--mono);font-size:11px;
+    line-height:1.7;color:var(--sh-sub);}
+  .sh-bars{padding:18px 20px 4px;flex:1;}
+  .sh-bar{display:flex;height:28px;border-radius:5px;overflow:hidden;margin-bottom:16px;}
+  .sh-bar i{display:block;transition:flex-grow .45s ease,background-color .45s ease;}
+  .sh-band{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
+    padding:10px 0;border-bottom:1px solid var(--hair);background:none;border-left:0;
+    border-right:0;border-top:0;color:inherit;font:inherit;cursor:pointer;}
+  .sh-band:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .sh-chip{width:16px;height:9px;border-radius:2px;display:block;flex:none;
+    transition:background-color .45s ease;}
+  .sh-band .nm{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;}
+  .sh-band .n{margin-left:auto;font-family:var(--serif);font-size:20px;font-weight:600;}
+  .sh-band[aria-pressed="true"]{color:var(--accent);}
+  .sh-peek{padding:5px 0 0 27px;font-size:13.5px;color:var(--sub);}
+  .sh-insight{margin:14px 20px 20px;padding:13px 15px;border-left:2px solid var(--accent);
+    background:color-mix(in srgb, var(--accent) 6%, transparent);
+    font-size:14.5px;line-height:1.55;}
+  @media (max-width:760px){
+    .sh{grid-template-columns:1fr;}
+    .sh-them{border-right:0;border-bottom:1px solid var(--hair);}
+    .sh-view{height:230px;}
+  }
+
+  .sh-ctrl{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    margin-top:clamp(22px,2.6vw,32px);}
+  .sh-ctrl label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--sub);}
+  .sh-big{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--accent);
+    line-height:1;min-width:2.4ch;}
+  .sh-ctrl input[type=range]{flex:1;min-width:170px;max-width:420px;accent-color:var(--accent);height:24px;}
 </style>
 
 <header class="nav">
@@ -367,89 +468,48 @@
 </header>
 
 <!-- ============ HERO / feature 1: simplified ============ -->
-<section class="hero" id="write">
+<section class="hero solo" id="write">
   <div class="wrap">
-    <div class="copy">
-      <p class="eyebrow enter">Fast notes, neatly tabbed</p>
-      <h1 class="enter">Jot it. Tab it. <em>Find it later.</em></h1>
-      <p class="lede enter">A quick, tidy home for the things you write down. Pull down and the cursor's already waiting. No setup, no folders to build first.</p>
-      <div class="row enter">
-        <a class="badge-app" href="https://apps.apple.com/app/id6794497692"><span aria-hidden="true">◍</span><span><span class="s">Download on the</span><br><span class="l">App Store</span></span></a>
-        <span class="price">$4.99 once · offline · no account</span>
-      </div>
+    <p class="eyebrow enter">Notes that stay put</p>
+    <h1 class="enter">A quiet place to <em>put things down</em></h1>
+    <p class="lede enter">A quick, tidy home for the things you write down. Pull down and the cursor's already waiting. No setup, no folders to build first.</p>
+    <div class="row enter">
+      <a class="badge-app" href="https://apps.apple.com/app/id6794497692"><span aria-hidden="true">◍</span><span><span class="s">Download on the</span><br><span class="l">App Store</span></span></a>
+      <span class="price">$4.99 once · offline · no account</span>
     </div>
-    <div class="demo enter">
-      <div class="phone">
-        <div class="notch"></div>
-        <div class="status"><span>9:41</span><span></span></div>
-        <div class="app">
-          <div class="app-pad">
-            <div class="app-head">
-              <span class="nb-lbl">Notebooks</span>
-              <span class="icons">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.3-2.6h-4l-.3 2.6a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.5c.06-.32.1-.65.1-1Z"/></svg>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-              </span>
-            </div>
-            <div class="app-books">
-              <button class="on">Japanese Recipes</button><button>Italian</button><button>Kyoto Trip</button><button>Groceries</button>
-            </div>
-            <div class="app-title"><h3>Japanese Recipes</h3><span class="n" id="hero-count">6 notes</span></div>
-            <div class="app-pull" id="hero-pull"><span class="arrow">↓</span> pull to write</div>
-          </div>
-          <div class="app-scroll" id="hero-scroll">
-            <div class="pull-reveal" id="hero-reveal"><span class="ring">+</span><span class="txt">pull to write</span></div>
-            <div class="pull-inner" id="hero-inner">
-              <div id="hero-fresh"></div>
-              <div class="sec-h"><span class="chev">⌄</span><span class="sdot"></span><span class="lbl">Pinned</span><span class="rule"></span><span class="cnt">1</span></div>
-              <div class="note-row"><span class="star">★</span>Shoyu ramen</div>
-              <div class="sec-h"><span class="chev">⌄</span><span class="sdot"></span><span class="lbl">Noodles</span><span class="rule"></span><span class="cnt">2</span></div>
-              <div class="note-row">Udon with dashi butter<span class="van"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>23h</span></div>
-              <div class="note-row">Yakisoba night</div>
-              <div class="sec-h"><span class="chev">⌄</span><span class="sdot"></span><span class="lbl">Rice</span><span class="rule"></span><span class="cnt">2</span></div>
-              <div class="note-row">Katsudon</div>
-              <div class="note-row">Onigiri, three ways</div>
-              <div class="sec-h"><span class="chev">⌄</span><span class="sdot"></span><span class="lbl">Soup</span><span class="rule"></span><span class="cnt">1</span></div>
-              <div class="note-row">Miso soup base</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="hint">↑ grab the sheet and pull down to write</p>
+    <div class="gesture-wrap enter">
+      <div class="gesture" aria-hidden="true"></div>
+      <span class="gesture-l">pull to write</span>
     </div>
   </div>
 </section>
 
 <!-- ============ feature 2: two-level organization ============ -->
-<section class="feat" id="organize">
+<section class="feat solo" id="organize">
   <div class="wrap">
     <div class="copy reveal">
       <p class="eyebrow">Two-level organization</p>
-      <h2>Notebooks on the outside. <em>Tabs</em> on the inside.</h2>
-      <p class="body">Swipe between notebooks; sort each one with tabbed sections. A flat list was never organization. Switch notebooks below, pick a tab, then type your own note and watch it file itself.</p>
-      <div class="kv stagger">
-        <div><span class="m">01</span><span>Pick a notebook: recipes, a trip, a reading list</span></div>
-        <div><span class="m">02</span><span>Sort inside it with tabbed sections</span></div>
-        <div><span class="m">03</span><span>Everything lands where you'll look for it</span></div>
-      </div>
+      <h2>Notebooks on the outside. <em>Labels</em> on the inside.</h2>
+      <p class="body">Search finds a note you can already name. Labels show you what you have — including the answer to questions you never thought to ask.</p>
     </div>
-    <div class="demo reveal">
-      <div class="demo-card">
-        <div class="app editor" style="height:auto">
-          <div class="app-pad">
-            <div class="app-head"><span class="nb-lbl">Notebooks</span><span class="icons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.3-2.6h-4l-.3 2.6a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.3 2.6h4l.3-2.6a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.5c.06-.32.1-.65.1-1Z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span></div>
-            <div class="app-books" id="ed-books"></div>
-            <div class="app-title"><h3 id="ed-title">Japanese Recipes</h3><span class="n" id="ed-count"></span></div>
-          </div>
-          <div class="app-scroll" id="ed-list" style="min-height:150px;max-height:270px;overflow:auto"></div>
+    <div class="sh-ctrl reveal">
+      <label for="sh-range">Notes in this notebook</label>
+      <span class="sh-big" id="sh-count">160</span>
+      <input type="range" id="sh-range" min="40" max="600" step="10" value="160" aria-label="Notes in this notebook">
+    </div>
+    <div class="sh reveal">
+      <div class="sh-side sh-them">
+        <div class="sh-hd"><span class="sh-who">A flat list</span><span class="sh-stat" id="sh-them-stat"></span></div>
+        <div class="sh-view"><div class="sh-scroll" id="sh-them"></div><div class="sh-fade"></div></div>
+        <p class="sh-none">Everything it can tell you about this notebook is the number above. Ask it what you cook most and it has nowhere to look.</p>
+      </div>
+      <div class="sh-side sh-us">
+        <div class="sh-hd"><span class="sh-who">Lembaran</span><span class="sh-stat" id="sh-us-stat"></span></div>
+        <div class="sh-bars">
+          <div class="sh-bar" id="sh-bar" aria-hidden="true"></div>
+          <div id="sh-bands"></div>
         </div>
-        <div class="compose">
-          <div class="tagpick" id="ed-tags"></div>
-          <div class="field">
-            <input type="text" id="ed-field" placeholder="Jot something…" aria-label="New note" maxlength="70">
-            <button type="button" class="add" id="ed-add">Add</button>
-          </div>
-        </div>
+        <p class="sh-insight" id="sh-insight"></p>
       </div>
     </div>
   </div>
@@ -524,7 +584,7 @@
           <h4>Tags</h4>
           <div class="cz-toggle">
             <div><div class="t">Coloured</div><div class="s">Tint tabs &amp; dividers with each tag's colour</div></div>
-            <button class="toggle" id="cz-coloured" aria-pressed="false" aria-label="Toggle coloured tags"></button>
+            <button class="toggle" id="cz-coloured" aria-pressed="true" aria-label="Toggle coloured tags"></button>
           </div>
         </div>
       </div>
@@ -594,7 +654,7 @@
 <!-- ============ final ============ -->
 <section class="final">
   <div class="wrap">
-    <h2>Write it down. <em>Find it later.</em></h2>
+    <h2><em>Nothing</em> leaves this page.</h2>
     <div class="row">
       <a class="badge-app" href="https://apps.apple.com/app/id6794497692"><span aria-hidden="true">◍</span><span><span class="s">Download on the</span><br><span class="l">App Store</span></span></a>
       <a class="btn ghost" href="#write">Back to the top ↑</a>
@@ -604,7 +664,7 @@
 
 <footer>
   <div class="wrap">
-    <span>lembaran · fast notes, neatly tabbed.</span>
+    <span>lembaran · notes that stay put.</span>
     <span>Offline · private · pay once · <a href="privacy.html">Privacy</a></span>
   </div>
 </footer>
@@ -615,16 +675,15 @@
   var reduce=false; try{reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
   var $=function(s,r){return (r||document).querySelector(s);};
   var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
-  var TAGS={amber:"#DE9A3A",rust:"#C15E2C",blue:"#2E6FB6",violet:"#7C5CA6"};
+  var TAGS={amber:"#DE9A3A",rust:"#C15E2C",blue:"#2E6FB6",violet:"#7C5CA6",olive:"#6E8B4E"};
   var CLOCK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>';
 
   /* hero entrance orchestration (reduced-motion falls back to visible) */
   (function(){
     try{
-      var items=[$(".hero .eyebrow"),$(".hero h1"),$(".hero .lede"),$(".hero .row"),$(".hero .demo")].filter(Boolean);
+      var items=[$(".hero .eyebrow"),$(".hero h1"),$(".hero .lede"),$(".hero .row"),$(".hero .gesture-wrap"),$(".hero .demo")].filter(Boolean);
       function show(){
         items.forEach(function(el,i){ if(reduce){el.classList.add("show");} else { setTimeout(function(){el.classList.add("show");},70+i*95); } });
-        if(!reduce){ $$("#hero-inner > *").forEach(function(r,i){ r.style.animationDelay=(0.55+i*0.05)+"s"; r.classList.add("rowin"); }); }
       }
       requestAnimationFrame(show);
     }catch(e){ $$(".enter").forEach(function(el){el.classList.add("show");}); }
@@ -647,20 +706,6 @@
       root.style.setProperty("--serif",b.getAttribute("data-font"));});});
   })();
 
-  /* coloured tags toggle -> tint the hero section headers (dot + label) */
-  (function(){
-    var t=$("#cz-coloured"); if(!t) return;
-    var heroPal=["",TAGS.rust,TAGS.amber,TAGS.blue];
-    t.addEventListener("click",function(){
-      var on=t.getAttribute("aria-pressed")!=="true"; t.setAttribute("aria-pressed",String(on));
-      $$("#hero-scroll .sec-h").forEach(function(h,i){
-        var c=heroPal[i%heroPal.length],dot=$(".sdot",h),lbl=$(".lbl",h);
-        if(on&&c){h.classList.add("tint");if(dot)dot.style.background=c;if(lbl)lbl.style.color=c;}
-        else{h.classList.remove("tint");if(dot)dot.style.background="";if(lbl)lbl.style.color="";}
-      });
-    });
-  })();
-
   /* scroll reveal */
   (function(){
     var els=$$(".reveal");
@@ -669,88 +714,187 @@
     els.forEach(function(e){io.observe(e);});
   })();
 
-  /* 1 · pull to write (hero): rubber-band pull with spring-back */
+  /* 2 · the shape of it — the notebook seen side-on */
   (function(){
-    var handle=$("#hero-pull"), inner=$("#hero-inner"), reveal=$("#hero-reveal"), fresh=$("#hero-fresh"), count=$("#hero-count");
-    if(!handle||!inner||!reveal) return;
-    var txt=$(".txt",reveal);
-    var dragging=false,sy=0,dy=0,TH=72,total=6,ti=0;
-    var titles=["Ramen broth timing","Tempura batter, ice cold","Dashi: kombu + katsuobushi","Pickle the ginger","Call the fishmonger"];
-    function down(e){dragging=true;sy=e.clientY;dy=0;inner.classList.add("dragging");handle.classList.add("drag");try{handle.setPointerCapture(e.pointerId);}catch(_){}}
-    function move(e){
-      if(!dragging)return;
-      var raw=e.clientY-sy; dy=raw>0?raw:0;
-      var resist=Math.min(92,dy*0.6);
-      inner.style.transform="translateY("+resist+"px)";
-      reveal.style.opacity=Math.min(1,dy/(TH*0.75));
-      var armed=dy>TH; reveal.classList.toggle("armed",armed);
-      if(txt)txt.textContent=armed?"release to write":"pull to write";
-    }
-    function up(){
-      if(!dragging)return; dragging=false;
-      inner.classList.remove("dragging"); handle.classList.remove("drag");
-      inner.style.transform=""; reveal.style.opacity="0"; reveal.classList.remove("armed"); if(txt)txt.textContent="pull to write";
-      if(dy>TH){
-        var el=document.createElement("div"); el.className="note-row fresh"; el.textContent=titles[ti%titles.length]; ti++; total++;
-        fresh.insertBefore(el,fresh.firstChild); while(fresh.children.length>4)fresh.removeChild(fresh.lastChild);
-        if(count)count.textContent=total+" notes";
-      }
-      dy=0;
-    }
-    handle.addEventListener("pointerdown",down);
-    handle.addEventListener("pointermove",move);
-    handle.addEventListener("pointerup",up);
-    handle.addEventListener("pointercancel",up);
-  })();
+    var host = $("#sh-them"); if(!host) return;
 
-  /* 2 · notebook editor (two-level) */
-  (function(){
-    var data={
-      "Japanese Recipes":{tabs:[{n:"Pinned",c:null},{n:"Noodles",c:TAGS.rust},{n:"Rice",c:TAGS.amber},{n:"Soup",c:TAGS.blue}],
-        notes:[{t:"Shoyu ramen",s:0,pin:true},{t:"Udon with dashi butter",s:1,van:"23h"},{t:"Yakisoba night",s:1},{t:"Katsudon",s:2},{t:"Onigiri, three ways",s:2},{t:"Miso soup base",s:3}]},
-      "Kyoto Trip":{tabs:[{n:"Eat",c:TAGS.rust},{n:"See",c:TAGS.violet}],
-        notes:[{t:"% Arabica, Higashiyama",s:0},{t:"Nishiki Market lunch",s:0},{t:"Fushimi Inari at dawn",s:1}]},
-      "Reading List":{tabs:[{n:"Now",c:TAGS.blue},{n:"Next",c:TAGS.amber}],
-        notes:[{t:"Pachinko, half done",s:0,pin:true},{t:"The Wager",s:1}]}
-    };
-    var books=Object.keys(data),cur=books[0],coloured=false;
-    function firstTab(b){var t=data[b].tabs;for(var i=0;i<t.length;i++){if(t[i].n!=="Pinned")return i;}return 0;}
-    var curTab=firstTab(cur);
-    var elBooks=$("#ed-books"),elTitle=$("#ed-title"),elCount=$("#ed-count"),elList=$("#ed-list"),elTags=$("#ed-tags"),field=$("#ed-field"),add=$("#ed-add");
-    if(!elBooks) return;
-    var colToggle=$("#cz-coloured");
-    if(colToggle){colToggle.addEventListener("click",function(){coloured=colToggle.getAttribute("aria-pressed")==="true";renderTags();renderList();});}
-    var justAdded=null;
-    function renderBooks(){elBooks.innerHTML="";books.forEach(function(b){var x=document.createElement("button");x.textContent=b;if(b===cur)x.className="on";x.addEventListener("click",function(){if(b===cur)return;cur=b;curTab=firstTab(b);renderAll("all");});elBooks.appendChild(x);});}
-    function renderTags(){elTags.innerHTML="";data[cur].tabs.forEach(function(tab,i){if(tab.n==="Pinned")return;var x=document.createElement("button");x.textContent=tab.n;if(i===curTab){x.className="on";var col=(coloured&&tab.c)?tab.c:"var(--accent)";x.style.background=col;x.style.borderColor=col;}x.addEventListener("click",function(){if(i===curTab)return;curTab=i;renderTags();renderList("all");});elTags.appendChild(x);});}
-    function renderList(anim){
-      var nb=data[cur];elTitle.textContent=cur;elCount.textContent=nb.notes.length+" notes";elList.innerHTML="";var k=0;
-      nb.tabs.forEach(function(tab,i){
-        var ns=nb.notes.filter(function(n){return n.s===i;});if(!ns.length)return;
-        var h=document.createElement("div");h.className="sec-h"+(coloured&&tab.c?" tint":"");
-        h.innerHTML='<span class="chev">⌄</span><span class="sdot"></span><span class="lbl">'+tab.n+'</span><span class="rule"></span><span class="cnt">'+ns.length+'</span>';
-        if(coloured&&tab.c){$(".sdot",h).style.background=tab.c;$(".lbl",h).style.color=tab.c;}
-        if(anim==="all"&&!reduce){h.style.animationDelay=(k*0.03)+"s";h.classList.add("rowin");}k++;
-        elList.appendChild(h);
-        ns.forEach(function(n){
-          var row=document.createElement("div");row.className="note-row";
-          if(n.pin){var st=document.createElement("span");st.className="star";st.textContent="★";row.appendChild(st);}
-          row.appendChild(document.createTextNode(n.t));
-          if(n.van){var v=document.createElement("span");v.className="van";v.innerHTML=CLOCK+n.van;row.appendChild(v);}
-          else{var del=document.createElement("button");del.className="del";del.innerHTML="&times;";del.setAttribute("aria-label","Delete note");
-            del.addEventListener("click",function(){var idx=nb.notes.indexOf(n);if(idx>-1)nb.notes.splice(idx,1);renderList("all");});row.appendChild(del);}
-          if(n===justAdded){row.classList.add("fresh");justAdded=null;}
-          else if(anim==="all"&&!reduce){row.style.animationDelay=(k*0.03)+"s";row.classList.add("rowin");}
-          k++;
-          elList.appendChild(row);
+    // The app ships a fixed set of four tag colours and cycles them when a
+    // notebook has more sections than colours (Theme.swift, CustomizeView).
+    // Five labels therefore repeat amber — matching the product rather than
+    // inventing a fifth colour it does not have. Antipasti and Secondi are the
+    // pair that share it: different sizes, and far apart in the list.
+    var PALETTE = [TAGS.amber, TAGS.rust, TAGS.blue, TAGS.violet, TAGS.olive];
+    var LABELS = [
+      { label:"Antipasti", weight:3, notes:["Bruschetta, rub the garlic raw","Focaccia, 20h cold rise","Vitello tonnato","Arancini, use cold risotto","Caponata, sweet and sour","Olive ascolane"] },
+      { label:"Pasta",     weight:7, notes:["Cacio e pepe, no cream","Tagliatelle, 2 eggs per 100g","Carbonara \u2014 guanciale, not pancetta","Gnocchi, bake the potatoes","Orecchiette, cime di rapa","Pasta water, salty as the sea"] },
+      { label:"Sauces",    weight:4, notes:["San Marzano only","Pesto, marble mortar","Amatriciana, no garlic","Puttanesca, anchovy count","Arrabbiata, chilli count","Sugo, milk at the end"] },
+      { label:"Dolci",     weight:2, notes:["Tiramis\u00f9, savoiardi not sponge","Panna cotta ratio","Cannoli shells, fried in lard","Zabaglione, marsala","Affogato, hot over cold"] },
+      { label:"Secondi",   weight:5, notes:["Saltimbocca, sage under the ham","Osso buco, gremolata on top","Pollo alla cacciatora","Branzino, whole and salted","Cotoletta, bone in","Porchetta, overnight rest"] }
+    ];
+    LABELS.forEach(function(L,i){ L.color = PALETTE[i % PALETTE.length]; });
+
+    // A repeating schedule of labels in proportion to their weights, so the
+    // shape of the notebook holds at every position of the dial instead of
+    // drifting with the note count.
+    var CYCLE = LABELS.reduce(function(a,L){ return a + L.weight; }, 0);
+    var SCHEDULE = (function(){
+      var taken = LABELS.map(function(){ return 0; }), out = [];
+      for(var i = 0; i < CYCLE; i++){
+        var best = 0, bestScore = -Infinity;
+        LABELS.forEach(function(L,k){
+          var score = (L.weight * (i+1) / CYCLE) - taken[k];
+          if(score > bestScore){ bestScore = score; best = k; }
         });
+        taken[best]++; out.push(best);
+      }
+      return out;
+    })();
+
+    var MAX = 600;
+    // Note i is the same note whatever the dial says, so the whole run can be
+    // generated once and sliced. That is what lets the list append instead of
+    // rebuilding, and it keeps a note from changing identity mid-drag.
+    var ALL = (function(){
+      var out = [], seen = LABELS.map(function(){ return 0; });
+      for(var i = 0; i < MAX; i++){
+        var k = SCHEDULE[i % CYCLE], L = LABELS[k];
+        out.push({ t:L.notes[seen[k] % L.notes.length], label:L.label });
+        seen[k]++;
+      }
+      return out;
+    })();
+
+    var notes = [], by = {}, open = null;
+
+    function buildNotes(count){
+      notes = ALL.slice(0, count);
+      by = {};
+      LABELS.forEach(function(L){ by[L.label] = 0; });
+      notes.forEach(function(n){ by[n.label]++; });
+    }
+
+    var colToggle = $("#cz-coloured");
+    var coloured = !colToggle || colToggle.getAttribute("aria-pressed") === "true";
+    function tone(L){ return coloured ? L.color : "rgba(42,33,24,.30)"; }
+
+    // Built once, updated in place: rebuilding on every input would destroy the
+    // focused control and make dragging the dial jump the caret.
+    var segs = [], bands = [];
+
+    function build(){
+      var bar = $("#sh-bar"); bar.innerHTML = "";
+      segs = LABELS.map(function(){ var i = document.createElement("i"); bar.appendChild(i); return i; });
+
+      var hostB = $("#sh-bands"); hostB.innerHTML = "";
+      bands = LABELS.map(function(L){
+        var wrap = document.createElement("div");
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "sh-band";
+        var chip = document.createElement("i"); chip.className = "sh-chip";
+        var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = L.label;
+        var n = document.createElement("span"); n.className = "n";
+        b.appendChild(chip); b.appendChild(nm); b.appendChild(n);
+        b.addEventListener("click", function(){
+          open = (open === L.label) ? null : L.label;
+          sync();
+        });
+        var peek = document.createElement("div");
+        wrap.appendChild(b); wrap.appendChild(peek);
+        hostB.appendChild(wrap);
+        return { L:L, btn:b, chip:chip, n:n, peek:peek };
       });
     }
-    function renderAll(anim){renderBooks();renderTags();renderList(anim);}
-    function addNote(){var v=field.value.trim();if(!v)return;var note={t:v,s:curTab};data[cur].notes.push(note);justAdded=note;field.value="";renderList();}
-    add.addEventListener("click",function(){addNote();field.focus();});
-    field.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addNote();}});
-    renderAll();
+
+    var shown = 0;
+    var rows = [];      // DOM rows, in display order
+    var stack = [];      // notes in the order they arrived, so removal undoes it
+
+    function makeRow(note){
+      var r = document.createElement("div");
+      r.className = "sh-row";
+      r.textContent = note.t;
+      return r;
+    }
+
+    function fillFlat(){
+      var fresh = [];
+
+      if(notes.length > shown){
+        for(var i = shown; i < notes.length; i++){
+          var note = notes[i], r = makeRow(note);
+          // Anywhere in the pile, including above what is currently on screen.
+          // That is the whole point: the rows you are looking at get pushed
+          // apart, instead of the list quietly getting taller below the fold.
+          var at = shown === 0 ? rows.length : Math.floor(Math.random() * (rows.length + 1));
+          host.insertBefore(r, host.children[at] || null);
+          rows.splice(at, 0, r);
+          stack.push(r);
+          // The first fill is the page loading, not the visitor adding notes.
+          if(!reduce && shown > 0){ r.classList.add("in"); fresh.push(r); }
+        }
+        if(fresh.length) setTimeout(function(){
+          fresh.forEach(function(n){ n.classList.remove("in"); });
+        }, 480);
+      } else {
+        // Take back the most recent arrivals, wherever in the pile they landed.
+        while(rows.length > notes.length){
+          var gone = stack.pop();
+          var idx = rows.indexOf(gone);
+          if(idx > -1) rows.splice(idx, 1);
+          if(gone.parentNode) gone.parentNode.removeChild(gone);
+        }
+      }
+      shown = notes.length;
+    }
+
+    function sync(){
+      segs.forEach(function(i,k){
+        i.style.background = tone(LABELS[k]);
+        i.style.flexGrow = by[LABELS[k].label];
+      });
+      bands.forEach(function(o){
+        var on = open === o.L.label;
+        o.btn.setAttribute("aria-pressed", String(on));
+        o.chip.style.background = tone(o.L);
+        o.n.textContent = by[o.L.label];
+        o.peek.innerHTML = "";
+        if(on){
+          notes.filter(function(x){ return x.label === o.L.label; }).slice(0,4).forEach(function(x){
+            var p = document.createElement("div"); p.className = "sh-peek"; p.textContent = x.t;
+            o.peek.appendChild(p);
+          });
+        }
+      });
+
+      // Names the label that actually leads and stops there. The proportions
+      // are the bar's job; quoting a ratio would claim an analytics screen the
+      // app does not have.
+      var sorted = LABELS.slice().sort(function(a,b){ return by[b.label] - by[a.label]; });
+      $("#sh-insight").textContent = "Mostly " + sorted[0].label.toLowerCase() +
+        ", as it turns out. You never decided that \u2014 you just kept writing, " +
+        "and the notebook kept the shape of it.";
+    }
+
+    function setCount(n){
+      $("#sh-count").textContent = n;
+      buildNotes(n);
+      fillFlat();
+      $("#sh-them-stat").textContent = n + " notes";
+      $("#sh-us-stat").textContent = n + " notes, " + LABELS.length + " labels";
+      sync();
+    }
+
+    if(colToggle){
+      colToggle.addEventListener("click", function(){
+        coloured = colToggle.getAttribute("aria-pressed") !== "true";
+        colToggle.setAttribute("aria-pressed", String(coloured));
+        sync();
+      });
+    }
+    $("#sh-range").addEventListener("input", function(e){ setCount(Number(e.target.value)); });
+
+    build();
+    setCount(160);
   })();
 
   /* 3 · privacy */
