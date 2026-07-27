@@ -283,64 +283,14 @@
   .sh{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(28px,3.6vw,44px);
     border:1px solid var(--hair);border-radius:14px;overflow:hidden;
     box-shadow:0 34px 60px -36px var(--shadow);}
-  .sh-side{min-width:0;display:flex;flex-direction:column;}
-  .sh-them{--sh-bg:#F5F5F7;--sh-ink:#1C1C1E;--sh-sub:#8E8E93;--sh-hair:#E5E5EA;
-    background:var(--sh-bg);color:var(--sh-ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-    border-right:1px solid var(--hair);}
-  .sh-us{background:var(--card);}
-  .sh-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:15px 20px 11px;}
-  .sh-them .sh-hd{border-bottom:1px solid var(--sh-hair);}
-  .sh-us .sh-hd{border-bottom:1px solid var(--hair);}
-  .sh-who{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;}
-  .sh-them .sh-who{color:var(--sh-sub);}
-  .sh-us .sh-who{color:var(--accent);}
-  .sh-stat{font-family:var(--mono);font-size:10.5px;}
-  .sh-them .sh-stat{color:var(--sh-sub);}
-  .sh-us .sh-stat{color:var(--sub);}
-  .sh-view{position:relative;height:300px;overflow:hidden;flex:1;}
-  .sh-scroll{position:absolute;inset:0;overflow-y:auto;padding:8px 20px 44px;}
-  .sh-fade{position:absolute;left:0;right:0;bottom:0;height:64px;pointer-events:none;
-    background:linear-gradient(transparent,#F5F5F7 66%);}
-  .sh-row{font-size:13px;padding:6px 0;border-bottom:1px solid var(--sh-hair);
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  /* A note dropping into the middle of the pile,shouldering the rows apart. */
-  .sh-row.in{animation:sh-in .42s cubic-bezier(.2,.8,.2,1) both;}
+  /* A note dropping into the middle of the pile{animation:sh-in .42s cubic-bezier(.2,.8,.2,1) both;}
   @keyframes sh-in{
     from{opacity:0;transform:translateY(-9px);background:rgba(10,132,255,.16);}
     60%{opacity:1;background:rgba(10,132,255,.16);}
     to{opacity:1;transform:none;background:transparent;}
   }
-  .sh-none{margin:0;padding:14px 20px 18px;font-family:var(--mono);font-size:11px;
-    line-height:1.7;color:var(--sh-sub);}
-  .sh-bars{padding:18px 20px 4px;flex:1;}
-  .sh-bar{display:flex;height:28px;border-radius:5px;overflow:hidden;margin-bottom:16px;}
-  .sh-bar i{display:block;transition:flex-grow .45s ease,background-color .45s ease;}
-  .sh-band{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
-    padding:10px 0;border-bottom:1px solid var(--hair);background:none;border-left:0;
-    border-right:0;border-top:0;color:inherit;font:inherit;cursor:pointer;}
-  .sh-band:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  .sh-chip{width:16px;height:9px;border-radius:2px;display:block;flex:none;
-    transition:background-color .45s ease;}
-  .sh-band .nm{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;}
-  .sh-band .n{margin-left:auto;font-family:var(--serif);font-size:20px;font-weight:600;}
-  .sh-band[aria-pressed="true"]{color:var(--accent);}
-  .sh-peek{padding:5px 0 0 27px;font-size:13.5px;color:var(--sub);}
-  .sh-insight{margin:14px 20px 20px;padding:13px 15px;border-left:2px solid var(--accent);
-    background:color-mix(in srgb, var(--accent) 6%, transparent);
-    font-size:14.5px;line-height:1.55;}
   @media (max-width:760px){
-    .sh{grid-template-columns:1fr;}
-    .sh-them{border-right:0;border-bottom:1px solid var(--hair);}
-    .sh-view{height:230px;}}
-
-  .sh-ctrl{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-    margin-top:clamp(22px,2.6vw,32px);}
-  .sh-ctrl label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--sub);}
-  .sh-big{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--accent);
-    line-height:1;min-width:2.4ch;}
-  .sh-ctrl input[type=range]{flex:1;min-width:170px;max-width:420px;accent-color:var(--accent);height:24px;}
+    .sh{grid-template-columns:1fr;}}
 
   /* ---- #private · the iron man test ------------------------------------
      Reuses .pv-log for the counter panel and .pv-result for the verdict,so
@@ -404,7 +354,7 @@
     border:1px solid color-mix(in srgb, var(--ink) 14%, transparent);
     box-shadow:0 2px 6px rgba(0,0,0,.10), 0 40px 70px -34px var(--shadow);}
   /* On a short window the phone would run past the fold while stuck. Give it
-     the room that is actually left under the bar, with a floor so it never
+     the room that is actually left under the bar,with a floor so it never
      collapses. */
   .rs-scr{border-radius:36px;overflow:hidden;background:var(--paper);
     height:max(430px, min(604px, calc(100vh - var(--nav-h, 64px) - 96px)));
@@ -435,7 +385,7 @@
   .rs-chips.segmented span.on{background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12);}
   .rs-chips.solid span{border-color:transparent;background:color-mix(in srgb, var(--ink) 8%, transparent);}
   .rs-chips.solid span.on{background:var(--ink);color:var(--paper);}
-  /* Paged: the notebook you are on, as dots, opposite the count. */
+  /* Paged: the notebook you are on,as dots,opposite the count. */
   .rs-dots{display:flex;align-items:center;justify-content:space-between;gap:12px;
     padding:4px 20px 0;flex:none;}
   .rs-dots .pips{display:flex;align-items:center;gap:6px;}
@@ -454,7 +404,7 @@
     border:1px solid var(--hair);color:var(--sub);}
   .rs-dock i.on{background:var(--accent);color:var(--on-accent);border-color:transparent;}
   .rs-dock i.add{border-style:dashed;}
-  /* Shelf: the notebook index, not a notebook. */
+  /* Shelf: the notebook index,not a notebook. */
   .rs-shelfwrap{flex:1;overflow:hidden;padding:2px 20px 0;}
   .rs-shelfgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
   .rs-book{border:1px solid var(--hair);border-left:3px solid var(--accent);border-radius:6px;
@@ -560,7 +510,73 @@
   @media (max-width:900px){
     .rs{grid-template-columns:1fr;gap:32px;}
     .rs-stack{position:static;}
-    .rs-phone{margin:0 auto;}}</style>
+    .rs-phone{margin:0 auto;}}
+  /* ---- #organize · the tidy-up ------------------------------------------ */
+  .lm{margin-top:clamp(26px,3.4vw,40px);}
+  .lm-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+  .lm-go{background:var(--accent);color:var(--on-accent);border:0;border-radius:10px;
+    padding:13px 24px;font-family:var(--serif);font-size:18px;cursor:pointer;
+    box-shadow:0 3px 12px color-mix(in srgb, var(--accent) 30%, transparent);
+    transition:transform .15s,filter .15s;}
+  .lm-go:hover{transform:translateY(-1px);filter:brightness(1.05);}
+  .lm-go:active{transform:translateY(0);filter:brightness(.97);}
+  .lm-go:focus-visible,.lm-mess:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .lm-go[disabled]{opacity:.4;cursor:default;transform:none;filter:none;box-shadow:none;}
+  .lm-mess{background:none;border:1px solid var(--hair);color:var(--sub);border-radius:10px;
+    padding:12px 18px;font-family:var(--mono);font-size:12px;cursor:pointer;}
+  .lm-mess[disabled]{opacity:.4;cursor:default;}
+  .lm-state{font-family:var(--mono);font-size:12px;color:var(--sub);}
+  /* Each state gets the height it needs. The height itself is animated in
+     script and deliberately not listed here — two things easing the same
+     property run two passes over it, and the box animates twice. */
+  .lm-stage{background:var(--card);border:1px solid var(--hair);border-radius:16px;
+    padding:22px;overflow:hidden;
+    transition:background-color .5s ease;}
+  .lm-stage.messy{background:color-mix(in srgb, var(--ink) 3%, var(--card));}
+  /* The heap is positioned, not flowed: notes overlap, sit at angles and
+     stack at different depths, the way paper actually lands. */
+  .lm-heap{position:relative;height:520px;}
+  .lm-heap .lm-note{position:absolute;max-width:42%;}
+  @media (max-width:700px){ .lm-heap{height:580px;} .lm-heap .lm-note{max-width:76%;} }
+  .lm-group{margin-bottom:18px;}
+  .lm-group:last-child{margin-bottom:0;}
+  .lm-lab{display:flex;align-items:center;gap:9px;margin-bottom:9px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+    opacity:0;transform:translateY(-3px);transition:opacity .34s ease,transform .34s ease;}
+  .lm-lab.in{opacity:1;transform:none;}
+  .lm-lab i{width:16px;height:9px;border-radius:2px;display:block;background:var(--tint);flex:none;}
+  .lm-lab .ct{margin-left:auto;letter-spacing:.06em;color:var(--sub);}
+  .lm-lab .rule{flex:1;height:1px;background:currentColor;opacity:.22;}
+  /* One line per label, scrolled rather than wrapped: the section keeps its
+     height however many notes a group holds. */
+  .lm-row{display:flex;flex-wrap:nowrap;gap:9px;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x proximity;
+    /* No visible bar: the fade at the right edge is the affordance instead. */
+    scrollbar-width:none;-ms-overflow-style:none;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);
+    mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);}
+  .lm-row::-webkit-scrollbar{display:none;width:0;height:0;}
+  .lm-row .lm-note{flex:none;scroll-snap-align:start;}
+  /* The rows open while notes are in the air, so a card is not clipped by the
+     scroller it is flying into. The stage itself never opens: a note bound for
+     a position scrolled off the end should slide away at the box's edge, not
+     fly outside it and then vanish when the clipping returns. */
+  .lm-stage.flying .lm-row{overflow:visible;-webkit-mask-image:none;mask-image:none;}
+  .lm-note{background:var(--paper);border:1px solid var(--hair);border-radius:9px;
+    padding:10px 14px;font-size:15px;line-height:1.35;
+    box-shadow:0 1px 2px rgba(0,0,0,.06);white-space:nowrap;}
+  /* The heap: every note the same anonymous grey,tilted,nothing to read by. */
+  .lm-stage.messy .lm-note{border-style:dashed;
+    background:var(--sheet, var(--paper));
+    box-shadow:0 2px 6px rgba(0,0,0,.10), 0 10px 22px -14px rgba(0,0,0,.35);}
+  .lm-stage.tidy .lm-note{box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  .lm-note .dot{display:none;width:7px;height:7px;border-radius:50%;background:var(--tint);
+    margin-right:8px;vertical-align:1px;}
+  .lm-stage.tidy .lm-note .dot{display:inline-block;animation:lm-dot .34s ease both;}
+  @keyframes lm-dot{from{opacity:0;transform:scale(.4);}}
+  @media (max-width:700px){
+    .lm-stage{padding:16px;}
+    .lm-note{font-size:13.5px;padding:8px 11px;}}</style>
 
 <header class="nav">
   <div class="wrap">
@@ -603,27 +619,15 @@
     <div class="copy reveal">
       <p class="eyebrow">Two-level organization</p>
       <h2>Notebooks on the outside. <em>Labels</em> on the inside.</h2>
-      <p class="body">Search finds a note you can already name. Labels show you what you have — including the answer to questions you never thought to ask.</p>
+      <p class="body">Fifty notes in the order they happened to get written, which is no order at all. One button puts every one of them under a label you named — and nothing about the notes themselves changes.</p>
     </div>
-    <div class="sh-ctrl reveal">
-      <label for="sh-range">Notes in this notebook</label>
-      <span class="sh-big" id="sh-count">160</span>
-      <input type="range" id="sh-range" min="40" max="600" step="10" value="160" aria-label="Notes in this notebook">
-    </div>
-    <div class="sh reveal">
-      <div class="sh-side sh-them">
-        <div class="sh-hd"><span class="sh-who">A flat list</span><span class="sh-stat" id="sh-them-stat"></span></div>
-        <div class="sh-view"><div class="sh-scroll" id="sh-them"></div><div class="sh-fade"></div></div>
-        <p class="sh-none">Everything it can tell you about this notebook is the number above. Ask it what you cook most and it has nowhere to look.</p>
+    <div class="lm reveal">
+      <div class="lm-bar">
+        <button type="button" class="lm-go" id="lm-go">Lembaran it!</button>
+        <button type="button" class="lm-mess" id="lm-mess">Mess it up again</button>
+        <span class="lm-state" id="lm-state" role="status" aria-live="polite"></span>
       </div>
-      <div class="sh-side sh-us">
-        <div class="sh-hd"><span class="sh-who">Lembaran</span><span class="sh-stat" id="sh-us-stat"></span></div>
-        <div class="sh-bars">
-          <div class="sh-bar" id="sh-bar" aria-hidden="true"></div>
-          <div id="sh-bands"></div>
-        </div>
-        <p class="sh-insight" id="sh-insight"></p>
-      </div>
+      <div class="lm-stage" id="lm-stage"></div>
     </div>
   </div>
 </section>
@@ -1302,10 +1306,14 @@
         paint();
       }
       cfg.coloured = t.getAttribute("aria-pressed") === "true";
+      t.addEventListener("click", function(){
+        t.setAttribute("aria-pressed", String(!(t.getAttribute("aria-pressed") === "true")));
+        follow();
+      });
+      // Kept so a change from anywhere else still lands; follow() no-ops when
+      // the state already matches, so the two never do the work twice.
       if(window.MutationObserver){
         new MutationObserver(follow).observe(t,{attributes:true,attributeFilter:["aria-pressed"]});
-      } else {
-        t.addEventListener("click", function(){ setTimeout(follow, 0); });
       }
     })();
 
@@ -1328,187 +1336,283 @@
     els.forEach(function(e){io.observe(e);});
   })();
 
-  /* 2 · the shape of it — the notebook seen side-on */
+  /* 2 · the tidy-up — one button, and the heap sorts itself */
   (function(){
-    var host = $("#sh-them"); if(!host) return;
+    var stage = $("#lm-stage"); if(!stage) return;
 
-    // The app ships a fixed set of four tag colours and cycles them when a
-    // notebook has more sections than colours (Theme.swift, CustomizeView).
-    // Five labels therefore repeat amber — matching the product rather than
-    // inventing a fifth colour it does not have. Antipasti and Secondi are the
-    // pair that share it: different sizes, and far apart in the list.
-    var PALETTE = [TAGS.amber, TAGS.rust, TAGS.blue, TAGS.violet, TAGS.olive];
-    var LABELS = [
-      { label:"Antipasti", weight:3, notes:["Bruschetta, rub the garlic raw","Focaccia, 20h cold rise","Vitello tonnato","Arancini, use cold risotto","Caponata, sweet and sour","Olive ascolane"] },
-      { label:"Pasta",     weight:7, notes:["Cacio e pepe, no cream","Tagliatelle, 2 eggs per 100g","Carbonara \u2014 guanciale, not pancetta","Gnocchi, bake the potatoes","Orecchiette, cime di rapa","Pasta water, salty as the sea"] },
-      { label:"Sauces",    weight:4, notes:["San Marzano only","Pesto, marble mortar","Amatriciana, no garlic","Puttanesca, anchovy count","Arrabbiata, chilli count","Sugo, milk at the end"] },
-      { label:"Dolci",     weight:2, notes:["Tiramis\u00f9, savoiardi not sponge","Panna cotta ratio","Cannoli shells, fried in lard","Zabaglione, marsala","Affogato, hot over cold"] },
-      { label:"Secondi",   weight:5, notes:["Saltimbocca, sage under the ham","Osso buco, gremolata on top","Pollo alla cacciatora","Branzino, whole and salted","Cotoletta, bone in","Porchetta, overnight rest"] }
+    var GROUPS = [
+      { nm:"Antipasti", colour:TAGS.amber,  notes:["Bruschetta, rub the garlic raw","Focaccia, 20h cold rise","Olive ascolane","Vitello tonnato","Caponata, sweet and sour","Arancini, use cold risotto","Prosciutto e melone","Carciofi alla giudia","Burrata, room temperature","Fritto misto, batter cold"] },
+      { nm:"Pasta",     colour:TAGS.rust,   notes:["Cacio e pepe, no cream","Carbonara — guanciale","Tagliatelle, 2 eggs per 100g","Orecchiette, cime di rapa","Gnocchi, bake the potatoes","Pasta water, salty as the sea","Lasagne, rest before cutting","Trofie al pesto","Bucatini, thick sauce only","Ravioli, seal with egg wash","Pici, hand-rolled","Risotto, 18 minutes"] },
+      { nm:"Sauces",    colour:TAGS.blue,   notes:["Ragù timing","Pesto, marble mortar","Amatriciana, no garlic","Puttanesca, anchovy count","Arrabbiata, chilli count","Sugo, milk at the end","Besciamella, nutmeg","Salsa verde, the day before","Aglio e olio, low heat","Marinara, San Marzano"] },
+      { nm:"Secondi",   colour:TAGS.olive,  notes:["Osso buco, gremolata","Saltimbocca, sage","Pollo alla cacciatora","Branzino, whole and salted","Cotoletta, bone in","Porchetta, overnight rest","Bollito misto, three meats","Coda alla vaccinara"] },
+      { nm:"Dolci",     colour:TAGS.violet, notes:["Tiramisù, savoiardi","Affogato, hot over cold","Panna cotta ratio","Cannoli shells, fried in lard","Zabaglione, marsala","Crostata, jam and lattice","Sfogliatella, patience","Maritozzo, cream to the edge","Torta caprese, no flour","Granita, scrape every 30 min"] }
     ];
-    LABELS.forEach(function(L,i){ L.color = PALETTE[i % PALETTE.length]; });
 
-    // A repeating schedule of labels in proportion to their weights, so the
-    // shape of the notebook holds at every position of the dial instead of
-    // drifting with the note count.
-    var CYCLE = LABELS.reduce(function(a,L){ return a + L.weight; }, 0);
-    var SCHEDULE = (function(){
-      var taken = LABELS.map(function(){ return 0; }), out = [];
-      for(var i = 0; i < CYCLE; i++){
-        var best = 0, bestScore = -Infinity;
-        LABELS.forEach(function(L,k){
-          var score = (L.weight * (i+1) / CYCLE) - taken[k];
-          if(score > bestScore){ bestScore = score; best = k; }
-        });
-        taken[best]++; out.push(best);
-      }
-      return out;
-    })();
+    // Every note as one flat pile, in an order that has nothing to do with what
+    // they are — which is the state the section is arguing against.
+    var ALL = [];
+    GROUPS.forEach(function(g,gi){
+      g.notes.forEach(function(t){ ALL.push({ t:t, g:gi }); });
+    });
+    var HEAP = ALL.slice();
+    // A fixed shuffle: the heap should look haphazard but be the same haphazard
+    // every time, so pressing Mess it up twice is not two different bugs.
+    HEAP.sort(function(a,b){
+      function k(s){ var v=0; for(var i=0;i<s.length;i++) v=(v*31+s.charCodeAt(i))%9973; return v; }
+      return k(a.t) - k(b.t);
+    });
 
-    var MAX = 600;
-    // Note i is the same note whatever the dial says, so the whole run can be
-    // generated once and sliced. That is what lets the list append instead of
-    // rebuilding, and it keeps a note from changing identity mid-drag.
-    var ALL = (function(){
-      var out = [], seen = LABELS.map(function(){ return 0; });
-      for(var i = 0; i < MAX; i++){
-        var k = SCHEDULE[i % CYCLE], L = LABELS[k];
-        out.push({ t:L.notes[seen[k] % L.notes.length], label:L.label });
-        seen[k]++;
-      }
-      return out;
-    })();
+    var nodes = {};      // note text -> its card, so FLIP can follow the same one
+    ALL.forEach(function(n){
+      var d = document.createElement("div");
+      d.className = "lm-note";
+      var dot = document.createElement("i");
+      dot.className = "dot";
+      dot.style.setProperty("--tint", GROUPS[n.g].colour);
+      d.appendChild(dot);
+      d.appendChild(document.createTextNode(n.t));
+      nodes[n.t] = d;
+    });
 
-    var notes = [], by = {}, open = null;
+    var tidy = false, nudged = false;
 
-    function buildNotes(count){
-      notes = ALL.slice(0, count);
-      by = {};
-      LABELS.forEach(function(L){ by[L.label] = 0; });
-      notes.forEach(function(n){ by[n.label]++; });
+    // Deterministic scatter: the same heap every time, so pressing Mess it up
+    // twice is not two different bugs. Seeded off the note's own text.
+    function rnd(t, k){
+      var v = k * 131;
+      for(var i = 0; i < t.length; i++) v = (v * 31 + t.charCodeAt(i)) % 99991;
+      var x = Math.sin(v) * 43758.5453;
+      return x - Math.floor(x);
     }
 
-    var colToggle = $("#cz-coloured");
-    var coloured = !colToggle || colToggle.getAttribute("aria-pressed") === "true";
-    function tone(L){ return coloured ? L.color : "rgba(42,33,24,.30)"; }
+    function buildHeap(){
+      stage.innerHTML = "";
+      stage.className = "lm-stage messy";
+      var heap = document.createElement("div");
+      heap.className = "lm-heap";
+      HEAP.forEach(function(n){
+        var d = nodes[n.t];
+        d.style.left = "0px";
+        d.style.top  = (1 + rnd(n.t,2) * 80).toFixed(2) + "%";
+        d.style.zIndex = String(2 + Math.floor(rnd(n.t,4) * 20));
+        // Fifty identical rectangles read as a grid however far you rotate
+        // them. Three barely-different papers break that up.
+        d.style.setProperty("--sheet",
+          "color-mix(in srgb, var(--ink) " + [0,2,4][Math.floor(rnd(n.t,5) * 3)] + "%, var(--paper))");
+        d.style.transform = "rotate(" + ((rnd(n.t,3) - 0.5) * 32).toFixed(2) + "deg)";
+        heap.appendChild(d);
+      });
+      stage.appendChild(heap);
 
-    // Built once, updated in place: rebuilding on every input would destroy the
-    // focused control and make dragging the dial jump the caret.
-    var segs = [], bands = [];
+      // Spread across everything a card can actually occupy. A flat percentage
+      // cannot do this: a short note and a long one have very different amounts
+      // of room to the right of them.
+      var room = heap.clientWidth;
+      HEAP.forEach(function(n){
+        var d = nodes[n.t];
+        if(room > 40 && d.offsetWidth > 0){
+          d.style.left = Math.round(4 + rnd(n.t,1) * Math.max(0, room - d.offsetWidth - 8)) + "px";
+        } else {
+          // No layout to measure (a test harness, or display:none) — fall back
+          // to a percentage wide enough to reach most of the way across.
+          d.style.left = (1 + rnd(n.t,1) * 56).toFixed(2) + "%";
+        }
+      });
+    }
 
-    function build(){
-      var bar = $("#sh-bar"); bar.innerHTML = "";
-      segs = LABELS.map(function(){ var i = document.createElement("i"); bar.appendChild(i); return i; });
-
-      var hostB = $("#sh-bands"); hostB.innerHTML = "";
-      bands = LABELS.map(function(L){
+    function buildTidy(){
+      stage.innerHTML = "";
+      stage.className = "lm-stage tidy";
+      GROUPS.forEach(function(g){
         var wrap = document.createElement("div");
-        var b = document.createElement("button");
-        b.type = "button"; b.className = "sh-band";
-        var chip = document.createElement("i"); chip.className = "sh-chip";
-        var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = L.label;
-        var n = document.createElement("span"); n.className = "n";
-        b.appendChild(chip); b.appendChild(nm); b.appendChild(n);
-        b.addEventListener("click", function(){
-          open = (open === L.label) ? null : L.label;
-          sync();
+        wrap.className = "lm-group";
+        var lab = document.createElement("div");
+        lab.className = "lm-lab";
+        lab.style.color = g.colour;
+        var chip = document.createElement("i");
+        chip.style.setProperty("--tint", g.colour);
+        lab.appendChild(chip);
+        lab.appendChild(document.createTextNode(g.nm));
+        lab.appendChild(Object.assign(document.createElement("span"), { className:"rule" }));
+        var ct = document.createElement("span");
+        ct.className = "ct";
+        ct.textContent = g.notes.length;
+        lab.appendChild(ct);
+        wrap.appendChild(lab);
+        var row = document.createElement("div");
+        row.className = "lm-row";
+        g.notes.forEach(function(t){
+          var d = nodes[t];
+          d.style.transform = "none";
+          d.style.left = d.style.top = d.style.zIndex = "";
+          row.appendChild(d);
         });
-        var peek = document.createElement("div");
-        wrap.appendChild(b); wrap.appendChild(peek);
-        hostB.appendChild(wrap);
-        return { L:L, btn:b, chip:chip, n:n, peek:peek };
+        wrap.appendChild(row);
+        stage.appendChild(wrap);
       });
     }
 
-    var shown = 0;
-    var rows = [];      // DOM rows, in display order
-    var stack = [];      // notes in the order they arrived, so removal undoes it
-
-    function makeRow(note){
-      var r = document.createElement("div");
-      r.className = "sh-row";
-      r.textContent = note.t;
-      return r;
+    // Measure, rebuild, measure, invert, release. Without this the cards would
+    // simply appear in their new places and the sorting would not be visible.
+    // Height of the stage with its current contents, without disturbing the
+    // value currently set on it.
+    function contentHeight(){
+      var was = stage.style.height;
+      stage.style.height = "auto";
+      var h = stage.scrollHeight;
+      stage.style.height = was;
+      return h;
     }
 
-    function fillFlat(){
-      var fresh = [];
-
-      if(notes.length > shown){
-        for(var i = shown; i < notes.length; i++){
-          var note = notes[i], r = makeRow(note);
-          // Anywhere in the pile, including above what is currently on screen.
-          // That is the whole point: the rows you are looking at get pushed
-          // apart, instead of the list quietly getting taller below the fold.
-          var at = shown === 0 ? rows.length : Math.floor(Math.random() * (rows.length + 1));
-          host.insertBefore(r, host.children[at] || null);
-          rows.splice(at, 0, r);
-          stack.push(r);
-          // The first fill is the page loading, not the visitor adding notes.
-          if(!reduce && shown > 0){ r.classList.add("in"); fresh.push(r); }
-        }
-        if(fresh.length) setTimeout(function(){
-          fresh.forEach(function(n){ n.classList.remove("in"); });
-        }, 480);
-      } else {
-        // Take back the most recent arrivals, wherever in the pile they landed.
-        while(rows.length > notes.length){
-          var gone = stack.pop();
-          var idx = rows.indexOf(gone);
-          if(idx > -1) rows.splice(idx, 1);
-          if(gone.parentNode) gone.parentNode.removeChild(gone);
-        }
+    // The stage grows and shrinks alongside the notes. This is the only thing
+    // that touches its height while they are in the air — a CSS transition on
+    // the same property would run its own pass over the same two numbers, and
+    // the box would visibly animate twice.
+    function resize(span){
+      var from = parseFloat(stage.style.height) || contentHeight();
+      var to = contentHeight();
+      if(reduce || Math.abs(to - from) < 2){
+        stage.style.height = to + "px";
+        return;
       }
-      shown = notes.length;
+
+      // Growing runs at once, or the notes fly into a box too small to hold
+      // them. Shrinking starts mid-flight, so the box closes around them
+      // rather than snapping shut a second and a half after they land.
+      var grow = to > from;
+      stage.style.height = from + "px";
+      resize.at = setTimeout(function(){
+        var anim = stage.animate(
+          [{ height: from + "px" }, { height: to + "px" }],
+          { duration: grow ? 420 : 820, easing:"cubic-bezier(.3,.7,.25,1)", fill:"forwards" }
+        );
+        resize.anim = anim;
+        anim.onfinish = function(){
+          // Commit the end value before cancelling. Cancel first and the box
+          // springs back to where it started for a frame, and anything still
+          // watching the property runs the whole distance over again.
+          stage.style.height = to + "px";
+          anim.cancel();
+          if(resize.anim === anim) resize.anim = null;
+        };
+      }, grow ? 0 : Math.round(span * 0.45));
     }
 
-    function sync(){
-      segs.forEach(function(i,k){
-        i.style.background = tone(LABELS[k]);
-        i.style.flexGrow = by[LABELS[k].label];
+    // Pressed again mid-flight: carry on from the height it had actually
+    // reached, not the one it set off from.
+    resize.stop = function(){
+      clearTimeout(resize.at);
+      if(!resize.anim) return;
+      var reached = stage.getBoundingClientRect().height;
+      resize.anim.cancel();
+      resize.anim = null;
+      if(reached > 0) stage.style.height = reached + "px";
+    };
+
+    function flip(build){
+      var before = {}, wasRotated = {};
+      ALL.forEach(function(n){
+        var d = nodes[n.t];
+        before[n.t] = d.getBoundingClientRect();
+        // Keep the angle it is leaving with, so the note unwinds on the way
+        // rather than snapping straight in the first frame.
+        var m = /rotate\(([-\d.]+)deg\)/.exec(d.style.transform || "");
+        wasRotated[n.t] = m ? m[1] : "0";
       });
-      bands.forEach(function(o){
-        var on = open === o.L.label;
-        o.btn.setAttribute("aria-pressed", String(on));
-        o.chip.style.background = tone(o.L);
-        o.n.textContent = by[o.L.label];
-        o.peek.innerHTML = "";
-        if(on){
-          notes.filter(function(x){ return x.label === o.L.label; }).slice(0,4).forEach(function(x){
-            var p = document.createElement("div"); p.className = "sh-peek"; p.textContent = x.t;
-            o.peek.appendChild(p);
+      build();
+      var span = 640 + (ALL.length - 1) * 14 + 60;
+      resize.stop();
+      resize(span);
+      if(reduce) return;
+      stage.classList.add("flying");
+      clearTimeout(flip.settle);
+      flip.settle = setTimeout(function(){ stage.classList.remove("flying"); }, span);
+
+      ALL.forEach(function(n,i){
+        var d = nodes[n.t], b = before[n.t], a = d.getBoundingClientRect();
+        var dx = b.left - a.left, dy = b.top - a.top;
+        var to = d.style.transform && d.style.transform !== "none" ? d.style.transform : "none";
+        var dot = d.querySelector(".dot");
+        if(dot) dot.style.animationDelay = (i*14 + 440) + "ms";
+        if(!dx && !dy) return;
+        d.animate(
+          [{ transform:"translate(" + dx + "px," + dy + "px) rotate(" + wasRotated[n.t] + "deg)" },
+           { transform: to }],
+          { duration:640, delay:i*14, easing:"cubic-bezier(.22,.86,.24,1.02)", fill:"backwards" }
+        );
+      });
+    }
+
+    function state(){
+      // Disabling the button that was just pressed drops focus to the body and
+      // strands a keyboard user at the top of the page. Hand it on — but only
+      // after the other button is enabled, since focus() on a disabled element
+      // does nothing at all.
+      var live = tidy ? $("#lm-mess") : $("#lm-go");
+      var dying = tidy ? $("#lm-go") : $("#lm-mess");
+      var handOn = document.activeElement === dying;
+      $("#lm-go").disabled = tidy;
+      $("#lm-mess").disabled = !tidy;
+      if(handOn) live.focus();
+      $("#lm-state").textContent = tidy
+        ? ALL.length + " notes · " + GROUPS.length + " labels · nothing moved by hand"
+        : ALL.length + " notes · no order at all · nothing to scroll but the pile";
+    }
+
+    $("#lm-go").addEventListener("click", function(){
+      if(tidy) return;
+      tidy = true;
+      flip(buildTidy);
+      // Labels arrive after the notes have landed, so the sorting reads first.
+      // After the flight, not during it: the sorting should read first, and
+      // this was still timed against the old, slower stagger.
+      var settled = 640 + (ALL.length - 1) * 14;
+      var labs = stage.querySelectorAll(".lm-lab");
+      [].forEach.call(labs, function(l,i){
+        setTimeout(function(){ l.classList.add("in"); }, reduce ? 0 : settled - 120 + i*80);
+      });
+
+      // Nothing about a row says it scrolls until it moves. Once, on the first
+      // tidy, and only for rows that actually have more in them.
+      if(!reduce && !nudged){
+        nudged = true;
+        setTimeout(function(){
+          [].forEach.call(stage.querySelectorAll(".lm-row"), function(r,i){
+            if(r.scrollWidth - r.clientWidth < 24) return;
+            setTimeout(function(){
+              try{
+                r.scrollTo({ left:30, behavior:"smooth" });
+                setTimeout(function(){ r.scrollTo({ left:0, behavior:"smooth" }); }, 460);
+              }catch(e){ /* no smooth scrolling here; the fade will have to do */ }
+            }, i * 90);
           });
-        }
-      });
+        }, settled + 260);
+      }
+      state();
+    });
+    $("#lm-mess").addEventListener("click", function(){
+      if(!tidy) return;
+      tidy = false;
+      flip(buildHeap);
+      state();
+    });
 
-      // Names the label that actually leads and stops there. The proportions
-      // are the bar's job; quoting a ratio would claim an analytics screen the
-      // app does not have.
-      var sorted = LABELS.slice().sort(function(a,b){ return by[b.label] - by[a.label]; });
-      $("#sh-insight").textContent = "Mostly " + sorted[0].label.toLowerCase() +
-        ", as it turns out. You never decided that \u2014 you just kept writing, " +
-        "and the notebook kept the shape of it.";
-    }
+    buildHeap();
+    state();
+    // An explicit starting height, so the first transition has something to
+    // ease from rather than jumping out of auto.
+    stage.style.height = contentHeight() + "px";
 
-    function setCount(n){
-      $("#sh-count").textContent = n;
-      buildNotes(n);
-      fillFlat();
-      $("#sh-them-stat").textContent = n + " notes";
-      $("#sh-us-stat").textContent = n + " notes, " + LABELS.length + " labels";
-      sync();
-    }
-
-    if(colToggle){
-      colToggle.addEventListener("click", function(){
-        coloured = colToggle.getAttribute("aria-pressed") !== "true";
-        colToggle.setAttribute("aria-pressed", String(coloured));
-        sync();
-      });
-    }
-    $("#sh-range").addEventListener("input", function(e){ setCount(Number(e.target.value)); });
-
-    build();
-    setCount(160);
+    // The heap's positions are measured against the container's width, so a
+    // resize has to lay it out again — otherwise the notes bunch to one side.
+    var resized;
+    addEventListener("resize", function(){
+      clearTimeout(resized);
+      resized = setTimeout(function(){
+        if(!tidy) buildHeap();
+        stage.style.height = contentHeight() + "px";
+      }, 150);
+    });
   })();
 
   /* 3 · the iron man test — write anything; nothing leaves */
