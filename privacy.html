@@ -5,13 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lembaran — Privacy Policy</title>
 <style>
+  /* Colours live in variables so the dark scheme below only restates the five
+     that change. The light values are the originals, unchanged. */
+  :root {
+    --paper: #F2EDE1;
+    --ink: #2A2118;
+    --link: #9E3B2E;
+    --muted: #6b6250;
+    --rule: rgba(42,33,24,0.13);
+  }
+  /* The rest of the site re-themes across five palettes; without this, following
+     the footer's Privacy link from a dark theme flashed full-brightness white.
+     Values match the app's "midnight" palette. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #201C17;
+      --ink: #EAE1D0;
+      --link: #D28E52;
+      --muted: #9c9384;
+      --rule: rgba(234,225,208,0.16);
+    }
+  }
   body { font-family: Georgia, 'Times New Roman', serif; max-width: 680px; margin: 40px auto;
-         padding: 0 22px; color: #2A2118; background: #F2EDE1; line-height: 1.6; }
+         padding: 0 22px; color: var(--ink); background: var(--paper); line-height: 1.6; }
   h1 { font-size: 2rem; letter-spacing: -0.5px; }
   h2 { font-size: 1.2rem; margin-top: 2rem; }
-  a { color: #9E3B2E; }
-  .muted { color: #6b6250; font-style: italic; }
-  hr { border: none; border-top: 1px solid rgba(42,33,24,0.13); margin: 2rem 0; }
+  a { color: var(--link); }
+  .muted { color: var(--muted); font-style: italic; }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
 </style>
 </head>
 <body>

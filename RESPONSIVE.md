@@ -52,7 +52,7 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
 
 ## Rule violations
 
-- [ ] **R2a · `.final` uses `svh`/`vh`, not `dvh`** — `index.html:207`.
+- [x] **R2a · `.final` uses `svh`/`vh`, not `dvh`** — `index.html:207`.
   `min-height:70vh;min-height:70svh`. Rule 2 asks for `dvh`.
   **Worth a decision rather than a blind fix.** The `vh` line is a deliberate fallback for
   browsers without viewport variants, and the comment above it explains the `svh` choice.
@@ -75,7 +75,7 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
   spacing inside tight clamps, not full-height section sizing, so rule 2 does not reach them;
   converting would change the result by a few pixels at most.
 
-- [ ] **R2b · `.rs-scr` sizes itself from raw `100vh`** — `index.html:397`.
+- [x] **R2b · `.rs-scr` sizes itself from raw `100vh`** — `index.html:397`.
   `height:max(430px, min(604px, calc(100vh - var(--nav-h,64px) - 96px)))`. This is a
   full-height-derived measurement and `100vh` is the retracted-chrome height on a phone, so
   the phone mockup is computed taller than the space actually visible. Impact is bounded by
@@ -94,7 +94,7 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
   declaration parses, wins, and leaves every branch sane; the actual behavioural difference
   only appears on a real phone.
 
-- [ ] **R3 · No safe-area handling anywhere on the site** — `index.html:5, 87, 245`.
+- [x] **R3 · No safe-area handling anywhere on the site** — `index.html:5, 87, 245`.
   `env(safe-area-inset-*)` appears **0 times**, and the viewport meta is
   `width=device-width, initial-scale=1` with no `viewport-fit=cover`.
   Content reaching a screen edge: the sticky `header.nav` (top), `footer` (bottom), and
@@ -123,7 +123,7 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
   rotation, which fires `window.resize` and re-runs `measure()`, so the real path is covered —
   but a future padding change with no resize would leave `--nav-h` stale.
 
-- [ ] **R6 · Layout jumps at the 840 and 900 breakpoints** — measured height deltas of
+- [x] **R6 · Layout jumps at the 840 and 900 breakpoints** — measured height deltas of
   **−872 to −894px at 848px** and **−1068 to −1088px at 904–912px**.
   Both are the intended breakpoints reflowing (`.hero`/`.feat` → 1 column at 840; `.rs` → 1
   column at 900), not accidents.
@@ -194,7 +194,7 @@ All open items, most severe first. Details for each follow below.
 
 - [x] **1 · Reshaper overflows, cut content unreachable** — ≤344px. *Also the rule 6 violation.* **Fixed.**
 - [x] **R3 · No safe-area insets anywhere** — ≤926px landscape, notched devices. **Fixed.**
-- [ ] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.*
+- [x] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.* **Fixed.**
 - [ ] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall.
 - [x] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent. **Fixed.**
 - [x] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. **Fixed** (rule applied over the
@@ -252,6 +252,18 @@ full-brightness.
 
 Note this file is **byte-identical to `ios/Lembaran.swiftpm/privacy.html`** in the Lembaran
 repo, which ships inside the app bundle. Fix both together or they drift.
+
+**Fixed** — colours moved into five custom properties with a `prefers-color-scheme: dark`
+block using the app's `midnight` palette. Verified at all 8 matrix widths in both schemes:
+light resolves to **exactly the original values** (`rgb(242,237,225)` / `rgb(42,33,24)` /
+`rgb(158,59,46)`), dark to `rgb(32,28,23)` / `rgb(234,225,208)` / `rgb(210,142,82)`, with no
+horizontal scroll at any width.
+
+⚠ **The iOS copy is now out of sync.** `ios/Lembaran.swiftpm/privacy.html` in the Lembaran repo
+still has the hard-coded colours on `main`. An equivalent fix exists there on the unmerged
+`responsive-fixes` branch (commits `e7d367b`, `0b0e060`), but that version *also* scales the
+margins and headings, so the two files will not be byte-identical until one is reconciled to
+the other.
 
 ### 3. Touch targets below 44px — **coarse pointer, all widths**
 
