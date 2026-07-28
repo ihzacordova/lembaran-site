@@ -199,7 +199,8 @@ All open items, most severe first. Details for each follow below.
 - [x] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent. **Fixed.**
 - [x] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. **Fixed** (rule applied over the
   author's `svh` preference; tradeoff recorded in the code comment).
-- [ ] **4 · Section nav vanishes ≤840px with no replacement** — ≤840px.
+- [x] **4 · Section nav vanishes ≤840px with no replacement** — **Partly fixed:** recovered
+  761–840px; still hidden ≤760px, where it needs a design decision.
 - [x] **R6 · Layout jumps at 848px and 904–912px** — **Resolved, no code change.** All
   discontinuities accounted for; the two hard parts of rule 6 now pass.
 - [ ] **5 · Unterminated CSS comment** — latent trap, no current effect.
@@ -311,6 +312,25 @@ Worth contrasting with `.theme-dots{display:none}` at ≤600px (line 258), whose
 "full theme picker lives in Make it yours". **That claim is true and verified** — clicking a
 theme option inside `#yours` at 375px changes `data-app-theme` and re-themes the page. That
 one is a sound trade; the nav links are not covered the same way.
+
+**Partly fixed — breakpoint moved 840 → 760.** The 840px threshold was far more conservative
+than needed. Measured: the five links are **294px** and fit alongside the brand, theme dots and
+CTA down to **760px** — 46px of slack at 840, 8px at 760. So the whole **761–840px tablet band**
+was hiding them for no reason. Verified after the change: links render from 764px up with the
+last link ending at x=465 against a CTA starting at x=649 (184px clear) at every width to 1920.
+iPad portrait (834px) now shows the full nav; phones are unchanged.
+
+**Still open below 760px, and it needs your call.** Below 760 the links genuinely collide —
+brand + links + theme dots + CTA exceeds the bar. The options, none of which I applied
+unilaterally:
+
+- **Hide the theme dots earlier** (≤760 instead of ≤600). The links would then survive to
+  ~560px. Defensible, since `#yours` already carries a verified full theme picker — but it
+  removes a control that 600–760px users currently have.
+- **Add a menu button.** Proper wayfinding at every width, but it is a new component with JS,
+  focus management and ARIA — a feature, not a responsive fix.
+- **Leave it.** The page is a single linear scroll; the links are a convenience, not the only
+  route to any content.
 
 ### 5. Unterminated CSS comment silently swallows rules — **latent, no current effect**
 

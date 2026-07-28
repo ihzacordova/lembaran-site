@@ -262,7 +262,12 @@
 
   @media (max-width:840px){
     .hero .wrap,.feat .wrap{grid-template-columns:1fr;}
-    .hero .demo,.feat.flip .demo{order:-1;}
+    .hero .demo,.feat.flip .demo{order:-1;}}
+  /* The five section links measure 294px and fit alongside the brand, theme
+     dots and CTA down to 760px (8px spare there, 46px at 840). They used to be
+     dropped at 840, which hid them across the whole 761-840 tablet band for no
+     reason. Below 760 they genuinely collide with the theme dots. */
+  @media (max-width:760px){
     .nav-links{display:none;}}
   /* phones */
   @media (max-width:600px){
