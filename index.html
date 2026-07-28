@@ -46,9 +46,14 @@
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  /* No overflow-x:hidden here. On body it propagates to the viewport and
+     suppresses horizontal scrolling site-wide, which hides real overflow rather
+     than fixing it — it is what made the Reshaper's cut-off options unreachable
+     rather than merely off-screen. Anything that needs clipping clips at its own
+     container (.rs-scr, .rs-chips, .lm-row, .hero). Guarded by the sweep. */
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-    transition:background-color .5s ease,color .5s ease;overflow-x:hidden;}
+    transition:background-color .5s ease,color .5s ease;}
   a{color:inherit;} button{font-family:inherit;color:inherit;}
   ::selection{background:var(--accent);color:var(--on-accent);}
   @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important;}}

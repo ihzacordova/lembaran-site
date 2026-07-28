@@ -204,7 +204,7 @@ All open items, most severe first. Details for each follow below.
 - [x] **R6 · Layout jumps at 848px and 904–912px** — **Resolved, no code change.** All
   discontinuities accounted for; the two hard parts of rule 6 now pass.
 - [x] **5 · Unterminated CSS comment** — latent trap, no current effect. **Fixed.**
-- [ ] **6 · `body{overflow-x:hidden}` masks overflow** — all widths; makes item 1 unreachable.
+- [x] **6 · `body{overflow-x:hidden}` masks overflow** — all widths; makes item 1 unreachable. **Fixed.**
 
 ### 1. The Reshaper section overflows and the cut content is unreachable — **≤344px**
 
@@ -369,6 +369,15 @@ Line 51. On `body` this propagates to the viewport and suppresses horizontal scr
 site-wide. It doesn't cause finding 1, but it converts it from "content off the right edge you
 can pan to" into "content that cannot be reached at all". It also means overflow bugs won't
 announce themselves during manual resizing.
+
+**Fixed** — removed, last of the six so that item 1's fix was already in place. Clipping now
+happens at the containers that actually want it (`.rs-scr`, `.rs-chips`, `.lm-row`, `.hero`).
+
+Removing it is the real proof that item 1 was fixed rather than hidden: with nothing
+suppressing horizontal scroll, the sweep is clean at **4px resolution across 320→1920** on the
+fine pointer and 8px on the coarse pointer, on both routes. `sweep.mjs --selftest` asserts the
+`HSCROLL` detector still fires, and that assertion only passes while no `overflow-x: hidden`
+is in place — so re-adding it fails the self-test.
 
 ---
 
