@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lembaran — Privacy Policy</title>
+<title>Lembaran Privacy Policy</title>
 <meta name="theme-color" content="#F7F7F4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1B19" media="(prefers-color-scheme: dark)">
 <style>
   /* Plain-text treatment: monospace, caps headings, a tight measure.
-     Deliberately NOT hard-wrapped — fixed line breaks would force horizontal
-     scrolling on a phone. The text reflows instead, so it stays readable from
+     Deliberately NOT hard-wrapped. Fixed line breaks would force horizontal
+     scrolling on a phone; the text reflows instead, so it stays readable from
      320px up and still copies out cleanly.
      Real headings (h1/h2) rather than styled divs, so the document can be
      navigated by a screen reader or an App Store reviewer. */
@@ -35,7 +35,7 @@
   body{
     margin:0 auto;
     max-width:62ch;
-    padding:clamp(28px,7vw,56px) max(16px, env(safe-area-inset-right))
+    padding:clamp(20px,5vw,40px) max(16px, env(safe-area-inset-right))
             calc(clamp(40px,9vw,72px) + env(safe-area-inset-bottom))
             max(16px, env(safe-area-inset-left));
     background:var(--paper);
@@ -45,6 +45,18 @@
     line-height:1.7;
     -webkit-font-smoothing:antialiased;
   }
+
+  /* The way out, before the document rather than after it. Someone who opened
+     this from a link needs it reachable without reading to the end. */
+  .home{
+    display:inline-block;
+    color:var(--dim);
+    text-decoration:none;
+    letter-spacing:.04em;
+    margin-bottom:clamp(18px,4vw,30px);
+  }
+  .home:hover{color:var(--accent);}
+  .home .arw{color:var(--accent);}
 
   h1{
     font-size:1em;
@@ -86,18 +98,22 @@
     margin:2.6em 0 1.4em;
   }
   footer{color:var(--dim);}
-  /* A tappable target on a phone, without changing how it looks. */
+  footer p{margin:0 0 .6em;}
+  /* Tappable targets on a phone, without changing how they look. */
   @media (pointer:coarse){
-    footer a{display:inline-block;padding:12px 0;}
+    .home, footer a{display:inline-block;padding:12px 0;}
+    .home{margin-bottom:clamp(8px,2vw,18px);}
   }
 </style>
 </head>
 <body>
 
-<h1>Lembaran — Privacy Policy</h1>
+<a class="home" href="https://ihzacordova.github.io/lembaran-site/"><span class="arw">&larr;</span> lembaran</a>
+
+<h1>Lembaran Privacy Policy</h1>
 <p class="date">last updated 28 July 2026</p>
 
-<p class="lead">Lembaran collects nothing. Not &ldquo;almost nothing&rdquo; &mdash; nothing.
+<p class="lead">Lembaran collects nothing. Not &ldquo;almost nothing&rdquo;. Nothing.
 No account, no analytics, no servers, no tracking. The detail is below, though
 there isn&rsquo;t much of it.</p>
 
@@ -111,9 +127,9 @@ developer never sees your notes, because there is nowhere for them to go.</p>
 Lembaran keeps automatic on-device backups so it can recover your notes if a file
 is damaged.</p>
 <p>If you choose to create a backup from Settings, the exported file is saved
-wherever <em>you</em> send it &mdash; for example your own iCloud Drive or Files.
-That copy is governed by Apple&rsquo;s iCloud terms, not by us, and we have no
-access to it.</p>
+wherever <em>you</em> send it, for example your own iCloud Drive or Files. That
+copy is governed by Apple&rsquo;s iCloud terms, not by us, and we have no access
+to it.</p>
 
 <h2>Purchases</h2>
 <p>The optional one-time &ldquo;Pro&rdquo; unlock is handled entirely by
@@ -128,7 +144,7 @@ are handled by iOS on your device and are not shared with us.</p>
 
 <h2>About this website</h2>
 <p>This page is published on GitHub Pages. Like any web host, GitHub records
-requests to it &mdash; including your IP address &mdash; under
+requests to it, including your IP address, under
 <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">its
 own privacy statement</a>.</p>
 <p>That concerns this website, not the app. Lembaran itself never contacts this
@@ -143,8 +159,10 @@ children.</p>
 and the date above revised.</p>
 
 <hr>
-<footer>Questions? Email
-<a href="mailto:ihzaacordova@gmail.com">ihzaacordova@gmail.com</a>.</footer>
+<footer>
+  <p>Questions? Email <a href="mailto:ihzaacordova@gmail.com">ihzaacordova@gmail.com</a>.</p>
+  <p><a href="https://ihzacordova.github.io/lembaran-site/">Back to lembaran</a></p>
+</footer>
 
 </body>
 </html>
