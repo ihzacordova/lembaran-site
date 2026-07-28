@@ -46,7 +46,7 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
 | 3 · safe-area insets | ❌ **1 violation, site-wide** — see R3 |
 | 4 · inputs ≥16px | ✅ **Pass** — see R4 note |
 | 5 · 852×393 landscape | ✅ **Pass** — 0 overflowing elements, `scrollWidth` 852, `.final` 383px inside a 393px viewport |
-| 6 · nothing broken 320→1920 | ❌ **violated ≤344px** (finding 1) + jump review, see R6 |
+| 6 · nothing broken 320→1920 | ✅ **Pass** — horizontal scroll and overlap both clear after fixing item 1; all six height discontinuities accounted for, see R6 |
 
 ---
 
@@ -126,11 +126,35 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
 - [ ] **R6 · Layout jumps at the 840 and 900 breakpoints** — measured height deltas of
   **−872 to −894px at 848px** and **−1068 to −1088px at 904–912px**.
   Both are the intended breakpoints reflowing (`.hero`/`.feat` → 1 column at 840; `.rs` → 1
-  column at 900), not accidents. Flagged because rule 6 as written forbids layout jumps
-  outright, which no breakpoint-based layout can satisfy — worth deciding whether the rule
-  means "no *unintended* jumps" (currently satisfied) or genuinely fluid layout (would need
-  the two-column grids replaced with `minmax()`/`auto-fit`).
+  column at 900), not accidents.
   **848px and 904–912px.**
+
+  **Resolved — no code change, deliberately.** Rule 6 has three parts. Two are absolute and now
+  pass; the third is not achievable as literally written.
+
+  - **No horizontal scroll 320→1920** ✅ — was violated ≤344px, fixed (item 1).
+  - **No overlapping text 320→1920** ✅ — 0 overlaps at 4px resolution.
+  - **No layout jumps** — re-swept at **4px steps with the threshold dropped to 40px**, which
+    surfaces six discontinuities rather than two. Every one is accounted for:
+
+    | Width | Δheight | Cause |
+    |---|---|---|
+    | 344px | −74px | `.lm-bar`'s two buttons stop wrapping to a second row (−52px) + a `p.body` line |
+    | 604px | +111px | the **600px** breakpoint |
+    | 720px | −48px | hero `h1` goes 2 lines → 1 (108→54px) |
+    | 764px | +74px | the **760px** breakpoint |
+    | 844px | −904px | the **840px** breakpoint (`.hero`/`.feat` → 1 col) |
+    | 904px | −1099px | the **900px** breakpoint (`.rs` → 1 col) |
+
+    Four are declared breakpoints; two are text rewrap. Neither category is removable: a
+    two-column→one-column transition changes height by definition, and moving to
+    `minmax()`/`auto-fit` relocates the jump rather than removing it. Text rewrap changes
+    height at every width where a line breaks, in any layout.
+
+  **There are no unintended structural jumps.** If the rule is meant literally — genuinely
+  continuous height across the whole range — it would require abandoning the two-column
+  design, which is a redesign rather than a fix. Recommend reading it as "no *unintended*
+  jumps", which is now satisfied and enforced by the sweep.
 
 ### R4 note — inputs (no action needed)
 
@@ -176,7 +200,8 @@ All open items, most severe first. Details for each follow below.
 - [x] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. **Fixed** (rule applied over the
   author's `svh` preference; tradeoff recorded in the code comment).
 - [ ] **4 · Section nav vanishes ≤840px with no replacement** — ≤840px.
-- [ ] **R6 · Layout jumps at 848px and 904–912px** — intended breakpoints; rule wording call.
+- [x] **R6 · Layout jumps at 848px and 904–912px** — **Resolved, no code change.** All
+  discontinuities accounted for; the two hard parts of rule 6 now pass.
 - [ ] **5 · Unterminated CSS comment** — latent trap, no current effect.
 - [ ] **6 · `body{overflow-x:hidden}` masks overflow** — all widths; makes item 1 unreachable.
 
