@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lembaran</title>
 <meta name="description" content="A quiet notebook for iPhone. Notebooks on the outside, labels on the inside, so a note lands where it belongs. Works offline, no account, pay once.">
 <meta name="theme-color" content="#F2EDE1">
@@ -53,7 +53,13 @@
   ::selection{background:var(--accent);color:var(--on-accent);}
   @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important;}}
 
-  .wrap{max-width:1120px;margin:0 auto;padding:0 26px;}
+  /* max() keeps the design gutter on every ordinary screen and only grows it
+     where a notch or rounded corner actually intrudes. Paired with
+     viewport-fit=cover in the head — that meta on its own extends layout INTO
+     the unsafe area, so the two must stay together. */
+  .wrap{max-width:1120px;margin:0 auto;
+    padding-left:max(26px, env(safe-area-inset-left));
+    padding-right:max(26px, env(safe-area-inset-right));}
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;}
   .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:9px;cursor:pointer;
     font-family:var(--sans);font-weight:600;font-size:15px;padding:13px 22px;text-decoration:none;
@@ -86,7 +92,9 @@
   /* ---------- nav ---------- */
   header.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--paper) 86%,transparent);
     backdrop-filter:saturate(1.1) blur(10px);-webkit-backdrop-filter:saturate(1.1) blur(10px);
-    border-bottom:1px solid var(--hair);transition:background-color .5s ease;}
+    border-bottom:1px solid var(--hair);transition:background-color .5s ease;
+    /* viewport-fit=cover puts y=0 under the status bar; keep the bar below it. */
+    padding-top:env(safe-area-inset-top);}
   header.nav .wrap{display:flex;align-items:center;gap:16px;height:64px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand img{width:28px;height:28px;border-radius:7px;display:block;}
@@ -242,7 +250,8 @@
   /* A phone in landscape has barely more height than the bar itself; a full
      screen there would push the buttons off the bottom. */
   @media (max-height:560px){ .final{min-height:0;padding:clamp(56px,10vh,90px) 0;} }
-  footer{border-top:1px solid var(--hair);padding:36px 0 60px;}
+  /* The footer is the last thing above the home indicator. */
+  footer{border-top:1px solid var(--hair);padding:36px 0 calc(60px + env(safe-area-inset-bottom));}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--sub);letter-spacing:.03em;}
   footer a{text-decoration:none;} footer a:hover{color:var(--ink);}
 
@@ -252,7 +261,7 @@
     .nav-links{display:none;}}
   /* phones */
   @media (max-width:600px){
-    .wrap{padding:0 18px;}
+    .wrap{padding-left:max(18px, env(safe-area-inset-left));padding-right:max(18px, env(safe-area-inset-right));}
     header.nav .wrap{gap:10px;height:56px;}
     .brand{gap:8px;} .brand img{width:24px;height:24px;} .wm{font-size:19px;}
     .theme-dots{display:none;}              /* full theme picker lives in "Make it yours" */
@@ -274,7 +283,7 @@
     footer .wrap{flex-direction:column;gap:7px;}}
   /* small phones */
   @media (max-width:360px){
-    .wrap{padding:0 15px;}
+    .wrap{padding-left:max(15px, env(safe-area-inset-left));padding-right:max(15px, env(safe-area-inset-right));}
     .hero h1{font-size:32px;}
     .feat h2{font-size:26px;}
     header.nav .btn{padding:8px 12px;font-size:13px;}

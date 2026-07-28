@@ -83,6 +83,24 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
   gutter is preserved and only grows where a notch actually intrudes.
   **≤926px landscape on notched devices.**
 
+  **Fixed** — `viewport-fit=cover` added to the meta, plus `max(gutter, env(...))` on `.wrap`
+  and both its responsive overrides (600px → 18px, 360px → 15px, which used the `padding`
+  shorthand and would otherwise have wiped the insets), `padding-top` on `header.nav`, and
+  `env(safe-area-inset-bottom)` on the footer.
+
+  **No JS change was needed, which is worth recording.** `--nav-h` is published from
+  `bar.offsetHeight` (`index.html:845`), and `offsetHeight` includes padding — so the nav's new
+  top inset propagates automatically to all four consumers (`.rs-stack` sticky offset,
+  `.rs-scr` height, `section[id]` scroll-margin-top, `.final` padding). Verified by simulating
+  a 59px inset before load: `--nav-h` goes 65→**124px** at 852×393 and 57→**116px** at 393×852,
+  and `scroll-margin-top` follows to 138/130px. Desktop is untouched (`env()` → 0, gutters stay
+  26/18/15px). 0 overflowing elements at both orientations.
+
+  One residual fragility, not currently reachable: the `ResizeObserver` watching the nav uses
+  the default content-box, so a padding-only change does not fire it. Insets change on
+  rotation, which fires `window.resize` and re-runs `measure()`, so the real path is covered —
+  but a future padding change with no resize would leave `--nav-h` stale.
+
 - [ ] **R6 · Layout jumps at the 840 and 900 breakpoints** — measured height deltas of
   **−872 to −894px at 848px** and **−1068 to −1088px at 904–912px**.
   Both are the intended breakpoints reflowing (`.hero`/`.feat` → 1 column at 840; `.rs` → 1
@@ -129,7 +147,7 @@ controls that *can* take focus for text entry are already at exactly 16px.
 All open items, most severe first. Details for each follow below.
 
 - [x] **1 · Reshaper overflows, cut content unreachable** — ≤344px. *Also the rule 6 violation.* **Fixed.**
-- [ ] **R3 · No safe-area insets anywhere** — ≤926px landscape, notched devices.
+- [x] **R3 · No safe-area insets anywhere** — ≤926px landscape, notched devices. **Fixed.**
 - [ ] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.*
 - [ ] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall.
 - [ ] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent.
