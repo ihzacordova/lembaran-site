@@ -128,7 +128,7 @@ controls that *can* take focus for text entry are already at exactly 16px.
 
 All open items, most severe first. Details for each follow below.
 
-- [ ] **1 · Reshaper overflows, cut content unreachable** — ≤344px. *Also the rule 6 violation.*
+- [x] **1 · Reshaper overflows, cut content unreachable** — ≤344px. *Also the rule 6 violation.* **Fixed.**
 - [ ] **R3 · No safe-area insets anywhere** — ≤926px landscape, notched devices.
 - [ ] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.*
 - [ ] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall.
@@ -159,6 +159,23 @@ options — on a 320px phone, five of the app's options are simply not selectabl
 
 Affects iPhone SE 1st/2nd gen and any 320px device. Clean from 345px up. **This is the
 rule 6 violation** (horizontal scroll between 320 and 1920).
+
+**Fixed** — two changes, because the first alone made it worse:
+
+1. `.rs-phone` → `width:min(330px,100%)`, so it stops being a hard floor.
+2. `.rs > * { min-width: 0 }` — the actual cause. Grid items default to
+   `min-width:auto`, so a column will not shrink below its content's min-content width.
+   Measured at 320px: `.rs-scr`'s interior has a **405px** min-content, which propagated up
+   (`.rs-phone` 429px → `.rs-stack` 429px) and pinned the single column at 429px inside a
+   290px box. Change 1 on its own removed the 330px cap and let that 429px floor take over
+   instead, pushing the overflow from ≤344px out to ≤400px and `scrollWidth` from 349 to
+   451px. Only `min-width:0` releases it.
+
+The interior already clips (`.rs-scr` is `overflow:hidden`), so the phone now scales 330→290px
+at 320px viewport: the chip row clips "Reading" and the notebook title wraps, but everything
+is on-screen and reachable. Verified: sweep clean **320→420px at 4px resolution** and
+**320→1920px at 8px** on both routes; all option labels, the toggle and both slider values
+visible at 320px.
 
 ### 2. `privacy.html` ignores the viewer's colour scheme — **all widths**
 

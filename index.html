@@ -355,6 +355,12 @@
      thumbnails,with the phone rebuilding beside them. */
   .rs{display:grid;grid-template-columns:1fr 330px;gap:44px;align-items:start;
     margin-top:clamp(26px,3.4vw,40px);}
+  /* Grid items default to min-width:auto, so a column refuses to shrink below
+     its content's min-content width. The phone's interior is ~405px wide, which
+     made the single column 429px on a 320px screen and pushed every control off
+     the edge. The interior already clips (.rs-scr is overflow:hidden), so let
+     the columns shrink and the phone scale down with them. */
+  .rs > *{min-width:0;}
   .rs-stack{position:sticky;top:calc(var(--nav-h, 64px) + 20px);}
   .rs-grp{margin-bottom:26px;}
   .rs-grp:last-child{margin-bottom:0;}
@@ -387,7 +393,10 @@
   .rs-slider input{width:100%;accent-color:var(--accent);height:22px;}
 
   /* the phone */
-  .rs-phone{width:330px;border-radius:46px;padding:11px;background:var(--card);
+  /* min(), not a flat 330px: below 900px .rs collapses to one column, so a
+     fixed width here becomes that column's min-content and stretches every
+     sibling — trays, toggle, sliders — past the viewport on a 320px phone. */
+  .rs-phone{width:min(330px,100%);border-radius:46px;padding:11px;background:var(--card);
     border:1px solid color-mix(in srgb, var(--ink) 14%, transparent);
     box-shadow:0 2px 6px rgba(0,0,0,.10), 0 40px 70px -34px var(--shadow);}
   /* On a short window the phone would run past the fold while stuck. Give it
