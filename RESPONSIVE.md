@@ -203,7 +203,7 @@ All open items, most severe first. Details for each follow below.
   761–840px; still hidden ≤760px, where it needs a design decision.
 - [x] **R6 · Layout jumps at 848px and 904–912px** — **Resolved, no code change.** All
   discontinuities accounted for; the two hard parts of rule 6 now pass.
-- [ ] **5 · Unterminated CSS comment** — latent trap, no current effect.
+- [x] **5 · Unterminated CSS comment** — latent trap, no current effect. **Fixed.**
 - [ ] **6 · `body{overflow-x:hidden}` masks overflow** — all widths; makes item 1 unreachable.
 
 ### 1. The Reshaper section overflows and the cut content is unreachable — **≤344px**
@@ -352,6 +352,16 @@ so live CSS resumes correctly.
 
 It is still worth fixing, because it is a trap: any rule added between line 323 and line 335
 will silently do nothing.
+
+**Fixed** — the whole orphaned block is gone rather than just the comment closed: the broken
+comment, `@keyframes sh-in`, the `.sh` rule and its `≤760px` media query, none of which had
+markup any more. The stale section comment above them (which described the `.sh` side-by-side
+comparison) was rewritten to describe what `.feat.solo` actually does now.
+
+Verified the removal was inert by comparing **computed styles for every element across 34
+properties, all 8 matrix widths and both routes, with animations frozen** — byte-identical
+before and after. (Screenshot hashes are not usable for this: the page runs continuous
+animations, so two runs never hash alike.)
 
 ### 6. `body{overflow-x:hidden}` masks overflow — **all widths**
 

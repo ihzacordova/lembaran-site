@@ -328,25 +328,14 @@
     .hero.solo h1{font-size:clamp(34px,10vw,54px);max-width:none;}
     .hero.solo .lede{font-size:16px;max-width:36ch;}}
 
-  /* ---- #organize · the shape of it (direction 01) ------------------------
-     The section turns the notebook side-on. The left half is deliberately NOT
-     drawn in the app's palette — cold grey,system sans — because it depicts a
-     different product. .feat.solo drops the two-column grid so the comparison
-     can run the full width. */
+  /* ---- .feat.solo -------------------------------------------------------
+     Drops the two-column grid so a section can run the full width. Used by
+     #write and #organize, the latter for the tidy-up demo (.lm).
+     The .sh side-by-side comparison this block was originally written for was
+     replaced by that demo; its CSS is gone. */
   .feat.solo .wrap{display:block;}
   .feat.solo .copy{max-width:none;}
   .feat.solo .copy .body{max-width:52ch;}
-  .sh{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(28px,3.6vw,44px);
-    border:1px solid var(--hair);border-radius:14px;overflow:hidden;
-    box-shadow:0 34px 60px -36px var(--shadow);}
-  /* A note dropping into the middle of the pile{animation:sh-in .42s cubic-bezier(.2,.8,.2,1) both;}
-  @keyframes sh-in{
-    from{opacity:0;transform:translateY(-9px);background:rgba(10,132,255,.16);}
-    60%{opacity:1;background:rgba(10,132,255,.16);}
-    to{opacity:1;transform:none;background:transparent;}
-  }
-  @media (max-width:760px){
-    .sh{grid-template-columns:1fr;}}
 
   /* ---- #private · the iron man test ------------------------------------
      Reuses .pv-log for the counter panel and .pv-result for the verdict,so
