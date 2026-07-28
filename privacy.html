@@ -2,76 +2,149 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lembaran — Privacy Policy</title>
+<meta name="theme-color" content="#F7F7F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1B19" media="(prefers-color-scheme: dark)">
 <style>
-  /* Colours live in variables so the dark scheme below only restates the five
-     that change. The light values are the originals, unchanged. */
-  :root {
-    --paper: #F2EDE1;
-    --ink: #2A2118;
-    --link: #9E3B2E;
-    --muted: #6b6250;
-    --rule: rgba(42,33,24,0.13);
+  /* Plain-text treatment: monospace, caps headings, a tight measure.
+     Deliberately NOT hard-wrapped — fixed line breaks would force horizontal
+     scrolling on a phone. The text reflows instead, so it stays readable from
+     320px up and still copies out cleanly.
+     Real headings (h1/h2) rather than styled divs, so the document can be
+     navigated by a screen reader or an App Store reviewer. */
+  :root{
+    --paper:#F7F7F4;
+    --ink:#232320;
+    --dim:#6B6A63;
+    --accent:#9E3B2E;
+    --rule:rgba(35,35,32,.22);
   }
-  /* The rest of the site re-themes across five palettes; without this, following
-     the footer's Privacy link from a dark theme flashed full-brightness white.
-     Values match the app's "midnight" palette. */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #201C17;
-      --ink: #EAE1D0;
-      --link: #D28E52;
-      --muted: #9c9384;
-      --rule: rgba(234,225,208,0.16);
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#1B1B19;
+      --ink:#E4E2DA;
+      --dim:#9A978C;
+      --accent:#D28E52;
+      --rule:rgba(228,226,218,.24);
     }
   }
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 680px; margin: 40px auto;
-         padding: 0 22px; color: var(--ink); background: var(--paper); line-height: 1.6; }
-  h1 { font-size: 2rem; letter-spacing: -0.5px; }
-  h2 { font-size: 1.2rem; margin-top: 2rem; }
-  a { color: var(--link); }
-  .muted { color: var(--muted); font-style: italic; }
-  hr { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0 auto;
+    max-width:62ch;
+    padding:clamp(28px,7vw,56px) max(16px, env(safe-area-inset-right))
+            calc(clamp(40px,9vw,72px) + env(safe-area-inset-bottom))
+            max(16px, env(safe-area-inset-left));
+    background:var(--paper);
+    color:var(--ink);
+    font-family:ui-monospace,"SF Mono",Menlo,"Cascadia Mono",Consolas,monospace;
+    font-size:clamp(13px,2.6vw,15px);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1{
+    font-size:1em;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin:0;
+    padding-bottom:.5em;
+    border-bottom:3px double var(--rule);
+  }
+  .date{color:var(--dim);margin:.6em 0 2em;}
+
+  h2{
+    font-size:1em;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:2.4em 0 .5em;
+  }
+
+  p{margin:0 0 1em;}
+  p.lead{margin-bottom:1.8em;}
+  strong{font-weight:700;}
+  em{font-style:normal;text-decoration:underline;text-underline-offset:.18em;}
+
+  /* On a wider screen, indent the body under its heading the way a text file
+     would. Skipped on phones, where the width is worth more than the flourish. */
+  @media (min-width:600px){
+    h2 + p, h2 + p + p{padding-left:2ch;}
+  }
+
+  a{color:var(--accent);}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  hr{
+    border:0;
+    border-top:1px solid var(--rule);
+    margin:2.6em 0 1.4em;
+  }
+  footer{color:var(--dim);}
+  /* A tappable target on a phone, without changing how it looks. */
+  @media (pointer:coarse){
+    footer a{display:inline-block;padding:12px 0;}
+  }
 </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <p class="muted">Lembaran · last updated 7 July 2026</p>
 
-  <p>Lembaran collects nothing. Not “almost nothing” — nothing. No account, no analytics,
-  no servers, no tracking. The detail is below, though there isn't much of it.</p>
+<h1>Lembaran — Privacy Policy</h1>
+<p class="date">last updated 28 July 2026</p>
 
-  <h2>What we collect</h2>
-  <p><strong>Nothing.</strong> There is no account system, no analytics, no advertising, and no
-  tracking. We operate no servers that receive your data. The developer never sees your notes,
-  because there is nowhere for them to go.</p>
+<p class="lead">Lembaran collects nothing. Not &ldquo;almost nothing&rdquo; &mdash; nothing.
+No account, no analytics, no servers, no tracking. The detail is below, though
+there isn&rsquo;t much of it.</p>
 
-  <h2>Where your notes live</h2>
-  <p>Your notebooks and notes are stored <strong>locally on your device</strong>. Lembaran
-  keeps automatic on-device backups so it can recover your notes if a file is damaged. If you
-  choose to create a backup from Settings, the exported file is saved wherever <em>you</em>
-  send it (for example your own iCloud Drive or Files) — that copy is governed by Apple's
-  iCloud terms, not by us, and we have no access to it.</p>
+<h2>What we collect</h2>
+<p><strong>Nothing.</strong> There is no account system, no analytics, no
+advertising and no tracking. We operate no servers that receive your data. The
+developer never sees your notes, because there is nowhere for them to go.</p>
 
-  <h2>Purchases</h2>
-  <p>The optional one-time “Pro” unlock is handled entirely by Apple's App Store and StoreKit.
-  We never receive your payment details. Apple's
-  <a href="https://www.apple.com/legal/privacy/">Privacy Policy</a> governs that transaction.</p>
+<h2>Where your notes live</h2>
+<p>Your notebooks and notes are stored <strong>locally on your device</strong>.
+Lembaran keeps automatic on-device backups so it can recover your notes if a file
+is damaged.</p>
+<p>If you choose to create a backup from Settings, the exported file is saved
+wherever <em>you</em> send it &mdash; for example your own iCloud Drive or Files.
+That copy is governed by Apple&rsquo;s iCloud terms, not by us, and we have no
+access to it.</p>
 
-  <h2>Widgets &amp; system features</h2>
-  <p>The home-screen widget reads your notes only from the same on-device storage, within a
-  private app group on your device. Spotlight indexing and Siri Shortcuts are handled by iOS
-  on your device and are not shared with us.</p>
+<h2>Purchases</h2>
+<p>The optional one-time &ldquo;Pro&rdquo; unlock is handled entirely by
+Apple&rsquo;s App Store and StoreKit. We never receive your payment details.
+Apple&rsquo;s <a href="https://www.apple.com/legal/privacy/">Privacy Policy</a>
+governs that transaction.</p>
 
-  <h2>Children</h2>
-  <p>Lembaran does not collect any personal information from anyone, including children.</p>
+<h2>Widgets &amp; system features</h2>
+<p>The home-screen widget reads your notes only from the same on-device storage,
+within a private app group on your device. Spotlight indexing and Siri Shortcuts
+are handled by iOS on your device and are not shared with us.</p>
 
-  <h2>Changes</h2>
-  <p>If this policy ever changes, the updated version will be posted on this page.</p>
+<h2>About this website</h2>
+<p>This page is published on GitHub Pages. Like any web host, GitHub records
+requests to it &mdash; including your IP address &mdash; under
+<a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">its
+own privacy statement</a>.</p>
+<p>That concerns this website, not the app. Lembaran itself never contacts this
+site, or any other.</p>
 
-  <hr>
-  <p class="muted">Questions? Email
-  <a href="mailto:ihzaacordova@gmail.com">ihzaacordova@gmail.com</a>.</p>
+<h2>Children</h2>
+<p>Lembaran does not collect any personal information from anyone, including
+children.</p>
+
+<h2>Changes</h2>
+<p>If this policy ever changes, the updated version will be posted on this page
+and the date above revised.</p>
+
+<hr>
+<footer>Questions? Email
+<a href="mailto:ihzaacordova@gmail.com">ihzaacordova@gmail.com</a>.</footer>
+
 </body>
 </html>
