@@ -195,7 +195,7 @@ All open items, most severe first. Details for each follow below.
 - [x] **1 · Reshaper overflows, cut content unreachable** — ≤344px. *Also the rule 6 violation.* **Fixed.**
 - [x] **R3 · No safe-area insets anywhere** — ≤926px landscape, notched devices. **Fixed.**
 - [x] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.* **Fixed.**
-- [ ] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall.
+- [x] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall. **Fixed — 0 remain.**
 - [x] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent. **Fixed.**
 - [x] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. **Fixed** (rule applied over the
   author's `svh` preference; tradeoff recorded in the code comment).
@@ -281,6 +281,25 @@ matter most:
 
 The range inputs are the sharpest: a 16px-tall drag target is hard to grab on a phone, and
 they are the primary control in the "Note text" group.
+
+**Fixed — 19 → 0** under an `@media (pointer: coarse)` block; fine pointers keep the tighter
+design unchanged. Full inventory was 11 distinct kinds, not the 6 first sampled — `.vn-controls`
+range, `.pro .row2` links and the footer links were only found by enumerating rather than
+spot-checking.
+
+**`.toggle` took three attempts, and the first two were wrong:**
+
+1. A `::before` with negative insets to expand the hit area invisibly. **Did not work** —
+   hit-testing 6px above and below the pill still missed it. Discarded rather than debugged.
+2. Scaling the whole pill to 72×44. Passed the target check but **broke the layout**: +24px on
+   `.cz-toggle`'s min-content propagated up and pushed the document to 325px at a 320px
+   viewport. Caught by re-sweeping, then isolated by disabling each coarse rule in turn.
+3. Height only, 28→44px, with the knob re-centred (`top:11px`). The pill is already 48px wide,
+   so only the short dimension needed to move. No horizontal impact.
+
+Verified: **0 targets under 44px** at 393px, 0 overflowing elements at 320px, touch and fine
+sweeps both clean 320→1920, and screenshots at all 8 matrix widths confirm desktop is
+visually unchanged.
 
 ### 4. Section navigation disappears below 840px with no replacement — **≤840px**
 

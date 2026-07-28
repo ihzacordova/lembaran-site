@@ -640,7 +640,27 @@
   @keyframes lm-dot{from{opacity:0;transform:scale(.4);}}
   @media (max-width:700px){
     .lm-stage{padding:16px;}
-    .lm-note{font-size:13.5px;padding:8px 11px;}}</style>
+    .lm-note{font-size:13.5px;padding:8px 11px;}}
+
+  /* ---- touch targets ------------------------------------------------------
+     Coarse pointers get a 44px minimum; fine pointers keep the tighter design.
+     .toggle grows in height only. Two earlier attempts were wrong: a ::before
+     with negative insets did not expand the hit area at all (hit-testing 6px
+     above and below the pill still missed it), and scaling the whole pill to
+     72px wide added 24px to .cz-toggle's min-content, which propagated up and
+     pushed the document to 325px on a 320px screen. The pill is already 48px
+     wide, so only the short dimension moves; the knob is re-centred to match. */
+  @media (pointer: coarse) {
+    .btn{min-height:44px;}
+    .lm-mess{min-height:44px;}
+    .rs-textrow select{padding:13px 0;}
+    input[type=range]{height:44px;}
+    .pay-opts button{min-height:44px;padding:7px 14px;}
+    .pro .links a,.pro .row2 a{padding:14px 6px;}
+    footer a{display:inline-block;padding:15px 2px;}
+    .toggle{height:44px;}
+    .toggle::after{top:11px;}
+  }</style>
 
 <header class="nav">
   <div class="wrap">
