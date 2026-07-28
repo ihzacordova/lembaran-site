@@ -205,6 +205,7 @@ All open items, most severe first. Details for each follow below.
   discontinuities accounted for; the two hard parts of rule 6 now pass.
 - [x] **5 · Unterminated CSS comment** — latent trap, no current effect. **Fixed.**
 - [x] **6 · `body{overflow-x:hidden}` masks overflow** — all widths; makes item 1 unreachable. **Fixed.**
+- [x] **7 · Hero didn't fill the screen on phones** — ≤600px. *Requested change, not from the original audit.* **Fixed.**
 
 ### 1. The Reshaper section overflows and the cut content is unreachable — **≤344px**
 
@@ -378,6 +379,38 @@ suppressing horizontal scroll, the sweep is clean at **4px resolution across 320
 fine pointer and 8px on the coarse pointer, on both routes. `sweep.mjs --selftest` asserts the
 `HSCROLL` detector still fires, and that assertion only passes while no `overflow-x: hidden`
 is in place — so re-adding it fails the self-test.
+
+### 7. Hero didn't fill the screen on phones — **≤600px**
+
+Not from the original audit — a requested design change. The hero was sized by its padding
+alone, so on a phone the next section ("Two-level organization") peeked above the fold and the
+first screen read as a fragment rather than an opening.
+
+**Fixed** — at ≤600px the hero takes `min-height: calc(100dvh - var(--nav-h))` and centres its
+content. `dvh` per rule 2, with a `vh` line as the fallback; `--nav-h` is the measured sticky
+bar height, so the hero fills exactly the space below it.
+
+Measured — next section top vs viewport bottom, i.e. the fold:
+
+| Device | Viewport | Hero | Next section starts | |
+|---|---|---|---|---|
+| iPhone SE | 375×667 | 610px | 667px | ✅ exactly at the fold |
+| iPhone 13/14 | 390×844 | 787px | 844px | ✅ |
+| iPhone 15 | 393×852 | 795px | 852px | ✅ |
+| iPhone Pro Max | 430×932 | 875px | 932px | ✅ |
+| Android | 360×800 | 743px | 800px | ✅ |
+| iPhone SE 1st gen | 320×568 | 511px | 568px | ✅ |
+
+`min-height` rather than `height`, so short viewports still grow instead of clipping — verified
+at 568×320 (SE landscape), where the content is taller than the screen and simply flows. iPad
+and desktop are untouched: the rule is scoped to ≤600px, and both still show the next section
+above the fold by design. Sweep clean 320→1920 on both routes; the new height discontinuity at
+608px is the 600px breakpoint doing this.
+
+**One judgement call left open:** the content is vertically centred, which puts "PULL TO WRITE"
+~180px above the bottom edge on a 852px screen rather than anchored near it. It reads fine —
+better on the shorter SE — but if you want that cue pinned lower as a stronger scroll
+affordance, it is a small change to the same block.
 
 ---
 

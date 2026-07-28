@@ -281,8 +281,14 @@
     .brand{gap:8px;} .brand img{width:24px;height:24px;} .wm{font-size:19px;}
     .theme-dots{display:none;}              /* full theme picker lives in "Make it yours" */
     header.nav .btn{padding:9px 15px;font-size:14px;}
-    .hero{padding:24px 0 40px;}
-    .hero .wrap{gap:24px;}
+    /* On a phone the hero owns the first screen: fill the viewport below the
+       sticky bar and centre the copy in it, so the next section starts below
+       the fold instead of peeking. dvh so it tracks the browser chrome rather
+       than measuring the retracted height; the vh line is the fallback. */
+    .hero{padding:24px 0 40px;display:flex;align-items:center;
+      min-height:calc(100vh - var(--nav-h,56px));
+      min-height:calc(100dvh - var(--nav-h,56px));}
+    .hero .wrap{gap:24px;width:100%;}
     .hero h1{font-size:clamp(36px,10.5vw,52px);}
     .hero .lede{font-size:16px;margin:18px 0 24px;max-width:none;}
     .hero .row{gap:14px;}
