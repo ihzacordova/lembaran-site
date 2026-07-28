@@ -210,9 +210,14 @@
 
   /* ---------- final + footer ---------- */
   /* Padded by the height of the sticky bar at both ends, so the centred
-     content can never end up underneath it. svh rather than vh: on a phone,
-     vh is the height with the browser chrome retracted, which overflows. */
-  .final{min-height:70vh;min-height:70svh;display:flex;align-items:center;
+     content can never end up underneath it.
+     Units, in order: vh is the fallback for browsers without viewport
+     variants. dvh is the project rule — it tracks the browser chrome live, so
+     the panel always fills exactly what is visible. The trade is that the
+     section reflows while the chrome collapses mid-scroll; svh (the previous
+     value) never reflows but leaves a gap once the chrome retracts. Only 70%
+     of the viewport is claimed, so neither behaviour is dramatic here. */
+  .final{min-height:70vh;min-height:70dvh;display:flex;align-items:center;
     text-align:center;padding:var(--nav-h,64px) 0;border-top:1px solid var(--hair);}
   .final .wrap{width:100%;}
   .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7.4vw,92px);line-height:1.02;letter-spacing:-.025em;margin:0 auto;max-width:15ch;text-wrap:balance;}

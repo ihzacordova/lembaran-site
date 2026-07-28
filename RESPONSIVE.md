@@ -63,6 +63,18 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
   `min-height:70dvh` and keep `70vh` as the fallback.
   **All widths, phones only** (desktop chrome doesn't retract).
 
+  **Fixed** — now `min-height:70vh;min-height:70dvh`. The rule was applied over the author's
+  `svh` preference; the tradeoff is written into the code comment rather than dropped, since
+  only 70% of the viewport is claimed and neither behaviour is dramatic at that size.
+  Measured unchanged in headless Chromium (596px at 393×852, 467px at 375×667, and the
+  `max-height:560px` rule still zeroes it at 852×393) — see the R2b caveat on why the real
+  difference is not observable here.
+
+  **Two `vh` uses deliberately left alone** — `.final .row` `margin-top:clamp(34px,5vh,58px)`
+  (line 254) and the short-viewport `padding:clamp(56px,10vh,90px)` (line 257). Both are
+  spacing inside tight clamps, not full-height section sizing, so rule 2 does not reach them;
+  converting would change the result by a few pixels at most.
+
 - [ ] **R2b · `.rs-scr` sizes itself from raw `100vh`** — `index.html:397`.
   `height:max(430px, min(604px, calc(100vh - var(--nav-h,64px) - 96px)))`. This is a
   full-height-derived measurement and `100vh` is the retracted-chrome height on a phone, so
@@ -161,7 +173,8 @@ All open items, most severe first. Details for each follow below.
 - [ ] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.*
 - [ ] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall.
 - [x] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent. **Fixed.**
-- [ ] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. Needs a decision, not a blind fix.
+- [x] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. **Fixed** (rule applied over the
+  author's `svh` preference; tradeoff recorded in the code comment).
 - [ ] **4 · Section nav vanishes ≤840px with no replacement** — ≤840px.
 - [ ] **R6 · Layout jumps at 848px and 904–912px** — intended breakpoints; rule wording call.
 - [ ] **5 · Unterminated CSS comment** — latent trap, no current effect.
