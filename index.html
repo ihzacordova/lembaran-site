@@ -411,8 +411,12 @@
   /* On a short window the phone would run past the fold while stuck. Give it
      the room that is actually left under the bar,with a floor so it never
      collapses. */
+  /* dvh, not vh: on a phone vh is the height with the browser chrome
+     retracted, so the phone was sized against space that isn't visible yet.
+     The vh line stays as a fallback for browsers without viewport variants. */
   .rs-scr{border-radius:36px;overflow:hidden;background:var(--paper);
     height:max(430px, min(604px, calc(100vh - var(--nav-h, 64px) - 96px)));
+    height:max(430px, min(604px, calc(100dvh - var(--nav-h, 64px) - 96px)));
     display:flex;flex-direction:column;position:relative;font-family:var(--rs-face,var(--serif));}
   .rs-sbar{display:flex;align-items:center;justify-content:space-between;padding:13px 26px 5px;
     font-family:var(--sans);font-size:13.5px;font-weight:600;flex:none;}

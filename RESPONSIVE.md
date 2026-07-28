@@ -72,6 +72,16 @@ Standard width matrix (`shots.mjs` default), real devices rather than round numb
   correct unit here.
   **Phones, portrait.**
 
+  **Fixed** — `100dvh` added as a second declaration, keeping the `100vh` line above it as the
+  fallback for browsers without viewport variants. Measured after the change: 604px at
+  393×852 (the `min()` cap), **514px at 375×667** (the calc branch: 667 − 57 nav − 96), 430px
+  at 852×393 (the `max()` floor). All three branches still behave.
+
+  **Caveat on the verification:** headless Chromium has no retracting browser chrome, so
+  `vh`, `svh` and `dvh` all resolve to `innerHeight` there. What is proven is that the
+  declaration parses, wins, and leaves every branch sane; the actual behavioural difference
+  only appears on a real phone.
+
 - [ ] **R3 · No safe-area handling anywhere on the site** — `index.html:5, 87, 245`.
   `env(safe-area-inset-*)` appears **0 times**, and the viewport meta is
   `width=device-width, initial-scale=1` with no `viewport-fit=cover`.
@@ -150,7 +160,7 @@ All open items, most severe first. Details for each follow below.
 - [x] **R3 · No safe-area insets anywhere** — ≤926px landscape, notched devices. **Fixed.**
 - [ ] **2 · `privacy.html` ignores colour scheme** — all widths. *Shared with the iOS bundle.*
 - [ ] **3 · Touch targets below 44px** — 19 of them; range sliders are 16px tall.
-- [ ] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent.
+- [x] **R2b · `.rs-scr` sized from raw `100vh`** — phones, portrait. Latent. **Fixed.**
 - [ ] **R2a · `.final` uses `svh`/`vh` not `dvh`** — phones. Needs a decision, not a blind fix.
 - [ ] **4 · Section nav vanishes ≤840px with no replacement** — ≤840px.
 - [ ] **R6 · Layout jumps at 848px and 904–912px** — intended breakpoints; rule wording call.
