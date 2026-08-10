@@ -1,7 +1,13 @@
 # lembaran-site
 
 Public landing page + privacy policy for the Lembaran iOS app, served via GitHub
-Pages at https://ihzacordova.github.io/lembaran-site/.
+Pages at https://lembaran.app/. The old project URL,
+https://ihzacordova.github.io/lembaran-site/, still resolves — GitHub redirects it
+to the custom domain, which is what keeps the privacy URL filed with App Review
+working.
+
+The custom domain is set by the `CNAME` file in this repo root. Deleting it
+reverts the site to the github.io URL, so leave it.
 
 This repo is public because Pages on a private repo needs a paid plan, and the
 privacy policy has to stay reachable — App Review follows it, and the shipping
