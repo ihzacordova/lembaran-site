@@ -402,10 +402,15 @@ Measured — next section top vs viewport bottom, i.e. the fold:
 | iPhone SE 1st gen | 320×568 | 511px | 568px | ✅ |
 
 `min-height` rather than `height`, so short viewports still grow instead of clipping — verified
-at 568×320 (SE landscape), where the content is taller than the screen and simply flows. iPad
-and desktop are untouched: the rule is scoped to ≤600px, and both still show the next section
-above the fold by design. Sweep clean 320→1920 on both routes; the new height discontinuity at
-608px is the 600px breakpoint doing this.
+at 568×320 (SE landscape), where the content is taller than the screen and simply flows.
+
+**Extended to every width (2026-09-29, requested).** On desktop the next section was still
+peeking under the hero, so the full-screen sizing moved from the ≤600px block into the base
+`.hero` rule. Measured: 1512×857, 1920×1080, 1024×768 and 834×1112 all put the next section
+exactly at the fold, with no horizontal scroll. At 1280×720 and 852×393 the hero content is
+taller than the screen, so it flows past the fold instead of being squeezed.
+The closing `.final` section got the same treatment (was `70dvh`, now `100dvh` minus the bar);
+its `@media (max-height:560px)` opt-out still applies in landscape.
 
 **One judgement call left open:** the content is vertically centred, which puts "PULL TO WRITE"
 ~180px above the bottom edge on a 852px screen rather than anchored near it. It reads fine —
