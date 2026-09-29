@@ -118,7 +118,17 @@
   @keyframes springin{0%{transform:translateY(-14px) scale(.97);opacity:0;}60%{transform:translateY(3px) scale(1.01);}100%{transform:none;opacity:1;}}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;padding:clamp(40px,6vw,80px) 0 clamp(48px,6vw,80px);overflow:hidden;}
+  /* The hero owns the first screen at every width: fill the viewport below the
+     sticky bar and centre the copy in it, so the next section starts below the
+     fold instead of peeking. dvh so it tracks the browser chrome rather than
+     measuring the retracted height; the vh line is the fallback. min-height,
+     not height, so a short viewport (a phone in landscape) grows instead of
+     clipping. .wrap needs width:100% because it is now a flex item. */
+  .hero{position:relative;padding:clamp(40px,6vw,80px) 0 clamp(48px,6vw,80px);overflow:hidden;
+    display:flex;align-items:center;
+    min-height:calc(100vh - var(--nav-h,64px));
+    min-height:calc(100dvh - var(--nav-h,64px));}
+  .hero > .wrap{width:100%;}
   .hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
     background-image:repeating-linear-gradient(var(--hair) 0 1px,transparent 1px 34px);
     -webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);
@@ -126,7 +136,7 @@
   .hero .wrap{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(30px,4vw,60px);align-items:center;}
   .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,6.6vw,88px);line-height:1;letter-spacing:-.03em;margin:0;text-wrap:balance;}
   .hero h1 em{font-style:italic;color:var(--accent);}
-  .hero .lede{font-size:clamp(17px,1.6vw,21px);line-height:1.55;color:var(--sub);max-width:34ch;margin:26px 0 32px;}
+  .hero .lede{font-size:clamp(17px,1.6vw,21px);line-height:1.55;color:var(--sub);max-width:34ch;margin:26px 0 32px;text-wrap:pretty;}
   .hero .row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
   .hero .price{font-family:var(--mono);font-size:12px;color:var(--sub);letter-spacing:.02em;}
   .badge-app{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--paper);border-radius:11px;padding:10px 16px;text-decoration:none;}
@@ -214,16 +224,16 @@
   .pro .row2 a{text-decoration:none;cursor:pointer;}
 
   /* ---------- final + footer ---------- */
-  /* Padded by the height of the sticky bar at both ends, so the centred
-     content can never end up underneath it.
+  /* A full screen of its own, like the hero: the viewport below the sticky
+     bar, so when it is scrolled into place nothing else shares the screen.
      Units, in order: vh is the fallback for browsers without viewport
      variants. dvh is the project rule — it tracks the browser chrome live, so
      the panel always fills exactly what is visible. The trade is that the
-     section reflows while the chrome collapses mid-scroll; svh (the previous
-     value) never reflows but leaves a gap once the chrome retracts. Only 70%
-     of the viewport is claimed, so neither behaviour is dramatic here. */
-  .final{min-height:70vh;min-height:70dvh;display:flex;align-items:center;
-    text-align:center;padding:var(--nav-h,64px) 0;border-top:1px solid var(--hair);}
+     section reflows while the chrome collapses mid-scroll; svh would never
+     reflow but leaves a gap once the chrome retracts. */
+  .final{min-height:calc(100vh - var(--nav-h,64px));min-height:calc(100dvh - var(--nav-h,64px));
+    display:flex;align-items:center;
+    text-align:center;padding:clamp(56px,8vh,96px) 0;border-top:1px solid var(--hair);}
   .final .wrap{width:100%;}
   .final h2{font-family:var(--serif);font-weight:500;font-size:clamp(40px,7.4vw,92px);line-height:1.02;letter-spacing:-.025em;margin:0 auto;max-width:15ch;text-wrap:balance;}
   .final h2 em{font-style:italic;color:var(--accent);}
@@ -281,14 +291,9 @@
     .brand{gap:8px;} .brand img{width:24px;height:24px;} .wm{font-size:19px;}
     .theme-dots{display:none;}              /* full theme picker lives in "Make it yours" */
     header.nav .btn{padding:9px 15px;font-size:14px;}
-    /* On a phone the hero owns the first screen: fill the viewport below the
-       sticky bar and centre the copy in it, so the next section starts below
-       the fold instead of peeking. dvh so it tracks the browser chrome rather
-       than measuring the retracted height; the vh line is the fallback. */
-    .hero{padding:24px 0 40px;display:flex;align-items:center;
-      min-height:calc(100vh - var(--nav-h,56px));
-      min-height:calc(100dvh - var(--nav-h,56px));}
-    .hero .wrap{gap:24px;width:100%;}
+    /* Full-screen sizing is in the base .hero rule; phones only tighten the padding. */
+    .hero{padding:24px 0 40px;}
+    .hero .wrap{gap:24px;}
     .hero h1{font-size:clamp(36px,10.5vw,52px);}
     .hero .lede{font-size:16px;margin:18px 0 24px;max-width:none;}
     .hero .row{gap:14px;}
@@ -690,7 +695,7 @@
   <div class="wrap">
     <p class="eyebrow enter">Notes that stay put</p>
     <h1 class="enter">A quiet place to <em>put things down</em></h1>
-    <p class="lede enter">A quick, tidy home for the things you write down. Pull down and the cursor's already waiting. No setup, no folders to build first.</p>
+    <p class="lede enter">Pull down and the keyboard is already up. There's nothing to set up and no folders to make first, so you can just start writing.</p>
     <div class="row enter">
       <a class="badge-app" href="https://apps.apple.com/app/id6794497692"><span aria-hidden="true">◍</span><span><span class="s">Download on the</span><br><span class="l">App Store</span></span></a>
       <span class="price">$4.99 once · offline · no account</span>
@@ -708,7 +713,7 @@
     <div class="copy reveal">
       <p class="eyebrow">Two-level organization</p>
       <h2>Notebooks on the outside. <em>Labels</em> on the inside.</h2>
-      <p class="body">Fifty notes in the order you happened to write them is not an order. Give each one a label and the pile becomes a list you can read. The notes stay exactly as they were.</p>
+      <p class="body">Most note apps list notes in the order you wrote them, which isn't much of an order. Give each note a label and they group themselves into a list you can actually read. The notes themselves don't change.</p>
     </div>
     <div class="lm reveal">
       <div class="lm-bar">
@@ -726,13 +731,13 @@
   <div class="wrap">
     <div class="copy reveal">
       <p class="eyebrow">Private by design</p>
-      <h2>No account. No servers. <em>No one.</em> Not even us.</h2>
-      <p class="body">Write anything you like in the box. Anything at all. The counter for bytes leaving your device will not move, because there is nowhere for them to go and nobody at the other end.</p>
+      <h2>Your notes are <em>none of our business.</em></h2>
+      <p class="body">There's no account, no analytics and no server of ours for a note to end up on. Want more? Lock a note, a tag or a whole notebook behind Face ID. Or just type something in the box and watch the second counter stay at zero.</p>
     </div>
     <div class="demo reveal">
       <div class="demo-card pad">
         <textarea id="ir-text" class="ir-field" aria-label="Write something private"
-          placeholder="An arc reactor. A resignation letter you haven't sent. What you'd actually do with the money."></textarea>
+          placeholder="Write something you wouldn't put in an email."></textarea>
         <div class="pv-log ir-meters">
           <div><span class="k">Characters written</span><span class="big" id="ir-typed">0</span></div>
           <div><span class="k">Bytes sent anywhere</span><span class="big" id="ir-sent">0</span></div>
@@ -749,8 +754,8 @@
   <div class="wrap">
     <div class="copy reveal">
       <p class="eyebrow">It's yours. Make it yours</p>
-      <h2>It bends to you. <em>Not</em> the other way around.</h2>
-      <p class="body">Every switch below is one the app really has. Move them and the phone rebuilds itself. Change the theme and this page changes with it, because these are the same themes that ship in the app.</p>
+      <h2>Change <em>almost everything</em> about how it looks.</h2>
+      <p class="body">These are the app's real settings. Flip one and the phone redraws. Pick a theme and this page switches too, since it uses the same five themes as the app.</p>
     </div>
     <div class="rs reveal">
       <div class="rs-controls" id="rs-controls"><div class="rs-grp" id="rs-tags">
@@ -771,8 +776,8 @@
   <div class="wrap">
     <div class="copy reveal">
       <p class="eyebrow">Vanishing notes</p>
-      <h2>Some notes <em>shouldn't</em> stay.</h2>
-      <p class="body">A door code, a one time password, a thought you will not need tomorrow. Give a note an expiry and it removes itself on the day you chose, without you remembering to do it. Set a timer below and watch.</p>
+      <h2>A note today. <em>A ghost</em> by Friday.</h2>
+      <p class="body">Useful for door codes, one-time passwords and anything you only need for a little while. Pick a date and the note deletes itself then, so you don't have to remember. Try it below with a short timer.</p>
     </div>
     <div class="demo reveal">
       <div class="demo-card pad">
@@ -787,8 +792,8 @@
   <div class="wrap">
     <div class="copy reveal">
       <p class="eyebrow">One payment is all it takes</p>
-      <h2>Pay once. <em>Own it.</em></h2>
-      <p class="body">$4.99, one time. Everything we add later is included in what you already paid. Drag the slider to see what a subscription would have cost you by the same date.</p>
+      <h2>Pay once and <em>it's yours.</em></h2>
+      <p class="body">$4.99, no subscription. Anything we add later is included. Drag the slider to compare it with a monthly note app over the same time.</p>
       <div class="pay-slider-row" style="margin-top:26px">
         <label>Using it for <span class="yrs" id="pay-yrs">3 years</span></label>
         <input type="range" class="full" id="pay-range" min="1" max="10" step="1" value="3">
@@ -797,7 +802,7 @@
         <div class="pay-bar"><h5>A monthly note app <b id="pay-sub">$107</b></h5><div class="pay-track sub"><i id="pay-subfill"></i></div></div>
         <div class="pay-bar"><h5>lembaran, once <b>$4.99</b></h5><div class="pay-track once"><i id="pay-oncefill" style="width:8%"></i></div></div>
       </div>
-      <p class="pay-save">You'd keep <b id="pay-save">$102</b> in your pocket.</p>
+      <p class="pay-save">You'd save <b id="pay-save">$102</b>.</p>
       <div class="pay-opts" id="pay-opts">
         <span style="font-family:var(--mono);font-size:11px;color:var(--sub);align-self:center;margin-right:2px">theirs:</span>
         <button data-mo="1.99">$1.99/mo</button><button data-mo="2.99" class="on">$2.99/mo</button><button data-mo="4.99">$4.99/mo</button>
@@ -1711,11 +1716,11 @@
     // Six witnesses, six different ways of not knowing. Identical answers read
     // as a template; these read as a roll call where nobody can help you.
     var WITNESSES = [
-      ["Our servers",        "we don't have any"],
+      ["Our servers",        "too poor to rent any"],
       ["Our analytics",      "what analytics?"],
       ["An AI model",        "wasn't invited"],
       ["An ad network",      "nothing here to bid on"],
-      ["Your cloud backup",  "nothing ever reached it"],
+      ["A data broker",      "nothing to sell them"],
       ["Us, who made it",    "we couldn't if we tried"]
     ];
 
@@ -1738,7 +1743,7 @@
       $("#ir-sent").textContent = "0";
       $("#ir-verdict").textContent = n === 0
         ? ""
-        : n + " characters, and not one of them has left this device.";
+        : n + (n === 1 ? " character" : " characters") + " so far, and we haven't seen one of them.";
     }
     field.addEventListener("input", paint);
     paint();
@@ -1781,7 +1786,7 @@
         if(left<=0){clearInterval(timer);timer=null;
           if(!reduce){note.classList.add("poof");}
           setTimeout(function(){
-            live.innerHTML='<div class="vn-gone"><div class="g">Gone.</div><p class="s">It deleted itself. No trash, no cloud copy, nothing to recover. That was the point.</p><button class="btn ghost" id="vn-again" type="button">Write another</button></div>';
+            live.innerHTML='<div class="vn-gone"><div class="g">Gone.</div><p class="s">It deleted itself. It skipped the trash folder, so there\'s nothing left to recover.</p><button class="btn ghost" id="vn-again" type="button">Write another</button></div>';
             var g=$(".vn-gone");if(g){if(reduce)g.classList.add("show");else requestAnimationFrame(function(){g.classList.add("show");});}
             var again=$("#vn-again");if(again)again.addEventListener("click",function(){secsVal=15;render(true);});
           },reduce?0:560);
@@ -1802,7 +1807,7 @@
       subN.textContent="$"+Math.round(subTotal);
       subFill.style.width=Math.max(4,subTotal/maxTotal*100)+"%";
       onceFill.style.width=Math.max(3,ONCE/maxTotal*100)+"%";
-      save.innerHTML="You'd keep <b>$"+Math.round(Math.max(0,subTotal-ONCE))+"</b> in your pocket.";
+      save.innerHTML="You'd save <b>$"+Math.round(Math.max(0,subTotal-ONCE))+"</b>.";
     }
     range.addEventListener("input",render);
     opts.forEach(function(b){b.addEventListener("click",function(){opts.forEach(function(x){x.classList.remove("on");});b.classList.add("on");mo=parseFloat(b.getAttribute("data-mo"));render();});});
